@@ -1,0 +1,40 @@
+Uvod
+Co je cilem BP, k cemu je takovej reportovaci modul vlastne dobrej, zminit kooperaci s Honzou kvuli FE casti BP
+
+1 GENEPI 
+- obecne o projektu, co ma splnovat, proc vznikl, jak vznik atd.
+1.1 Information system
+- popis informacniho systemu, hlavni funkcionality, pouzity technologie, jaky ma role a proc (anonymizace+overovani pacientu),na jaky konfiguraci bezi
+1.2 Reporting module
+- co ma reportovaci modul delat, popsat hlavni featury
+
+2 Analysis and design
+2.1 Available libraries for export
+- v tyle casti popisu dostupny knihovny, reknu jaky jsem kladl hlavni naroky a proc jsem vybrat to, co jsem vybral
+2.1.1 txt
+- vypis na hulvata pres streamy, jak je to strukturovany
+2.1.2 docx
+- proc docx4j a ne apache poi - zminit moznost vypisu do tabulky a normalne, jak je to strukturovany
+2.1.3 xls
+- proc apache poi a ne neco jinyho, jak je to strukturovany
+3.1.4 pdf
+- proc ne knihovna na generovani pdf, ale docx ---> pdf
+3.1.5 csv
+- proc ne knihovna na generovani csv, ale xls ---> csv
+2.2 Setting of an export
+- popsat, co vsechno se da v exportech nastavit a proc to bylo implementovano 
+2.2.1 modifikovatelny export
+- Jak je resena moznost naklikat si, co se bude exportovat - jak na strane BE, tak v dtb, tak na FE 
+2.2.2 user's sets
+- proc uzivatelsky sety vubec vznikly, jaky jsou druhy, proc je vic druhu, persistence
+2.2.3 security
+- anonymizace dat - jednak defaultni a jednak volitelna - mozna i kontrola, jestli jsou pacienti overeny, ale je otazka, jestli to patri pod security
+2.2.4 UI
+-screenshot/wireframe, popis obrazovky, proc sou jednotlivy komponenty tak, jak jsou
+
+3 Solution
+3.1 Creation of an export file
+- popsat, jak obecne vypada implementace exportu, ukazat hlavni metody a popsat, co se v nich odehrava, mazani pres CRON
+
+Zaver
+-hlavni problemy, co jsem se naucil, k cemu mi to je

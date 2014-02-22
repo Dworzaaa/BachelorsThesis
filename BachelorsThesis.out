@@ -1,7 +1,13 @@
-\BOOKMARK [0][-]{chapter*.5}{Introduction}{}% 1
-\BOOKMARK [0][-]{chapter.1}{State-of-the-art}{}% 2
-\BOOKMARK [0][-]{chapter.2}{Analysis and design}{}% 3
-\BOOKMARK [0][-]{chapter.3}{Realisation}{}% 4
-\BOOKMARK [0][-]{chapter*.6}{Conclusion}{}% 5
-\BOOKMARK [0][-]{appendix.A}{Acronyms}{}% 6
-\BOOKMARK [0][-]{appendix.B}{Contents of enclosed CD}{}% 7
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 1
+\BOOKMARK [0][-]{chapter.2}{Analysis and design}{}% 2
+\BOOKMARK [1][-]{section.2.1}{GENEPI - the information system}{chapter.2}% 3
+\BOOKMARK [1][-]{section.2.2}{Design of the reporting module}{chapter.2}% 4
+\BOOKMARK [0][-]{chapter.3}{Realisation}{}% 5
+\BOOKMARK [1][-]{section.3.1}{Customization of the export}{chapter.3}% 6
+\BOOKMARK [1][-]{section.3.2}{Export to the particular formats}{chapter.3}% 7
+\BOOKMARK [1][-]{section.3.3}{Security and anonymization}{chapter.3}% 8
+\BOOKMARK [1][-]{section.3.4}{Export of the verified patients}{chapter.3}% 9
+\BOOKMARK [1][-]{section.3.5}{Custom sets}{chapter.3}% 10
+\BOOKMARK [0][-]{chapter.4}{Conclusion}{}% 11
+\BOOKMARK [0][-]{appendix.A}{Acronyms}{}% 12
+\BOOKMARK [0][-]{appendix.B}{Contents of enclosed CD}{}% 13

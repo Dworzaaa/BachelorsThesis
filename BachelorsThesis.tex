@@ -48,21 +48,69 @@
 % \newacronym{CVUT}{{\v C}VUT}{{\v C}esk{\' e} vysok{\' e} u{\v c}en{\' i} technick{\' e} v Praze}
 % \newacronym{FIT}{FIT}{Fakulta informa{\v c}n{\' i}ch technologi{\' i}}
 
-\setsecnumdepth{part}
 \chapter{Introduction}
+The reporting module, part of the GENEPI - the information system, adds an important function to this software. Thanks to this module the user will be able to export data saved in the system to sundry formats. This is useful for the doctors that take care of patients with epilepsy, as well as for the researchers that make analysis above the data from this system. Due to the fact, that users, who should work with the exported data, have different access levels and different requirements on the format of the exported data, there is a need to make the modul to be able to anonymize sensitive data as well as to export data to different formats. The contracting authority also requested that the user could choose which data does he want to export. For research purposes is also important to determine, if data that should be exported, contain only patients, whose data was verified by the user with role "superdoctor".
 
-
-
-\setsecnumdepth{all}
-\chapter{State-of-the-art}
 
 \chapter{Analysis and design}
+The repoting module, as well as the whole information system, was designed given the requested robustness, accessibility, reliability and the cleanness of the code. GENEPI has a three-tier architecture, uses access according to the roles of the users via Spring Security and thanks to the optimalized data layer it saves the computing resources.
+
+\section{GENEPI - the information system}
+That the reader could fully understand the functioning of the reporting module, first of all it is needed to introduce the information system that it extends. GENEPI - the information system was being created within the subjects BI-SP1 and BI-SP2 on the Czech Technical University, faculty of information technologies in the school year 2012/2013 as a student's project. It should replace the original information system that was used in the Faculty Hospital Motol in Prague for maintaining patients in epileptosurgical programme. The main reasons for replacing the original system was a fact, that it didn't comply with the current requirements of the medics, contained bugs and its design wasn't optimal. GENEPI IS is written in java programming language, using frameworks Spring 3 and Hibernate 4.2.2. Frontend part is realized via JSP, using HTLM5, Javascript and CSS. Libraries that were used to ease the programming of the fronetnd were Twitter Bootstrap and jQuery. As a database has been chosen MySQL 5.5.27 and as an application server Apache Tomcat 7. All of the used libraries are distributed under some kind of free license. The GENEPI is a bilingual software due to the expected deployment in the Miami Children's hospital in Florida, the United States of America. Languages that are currently supported, are czech and english, nevertheless thanks to the suitably implemented localization it is easy to extend the application and add any other language. During the whole period of the programming of the system, the team consulted the approach often  and regularly with contracting authority, to fully meet the needs of medics.
+
+\section{Design of the reporting module}
+Architecture of the reporting module doesn't differ from the architecture of the rest of the information system. Thanks to this, I could guarantee the robustness and the security of this module. It has also provided me an easy and elegant way to access the other components in the system.
+
+\subsection{Design of the back-end part}
+Back-end part of the reporting module was designed to follow the three-tier architecture of the rest of the system. Thus the classes that this modul uses, are devided into three different packages. Every package contains classes that belong to the same tier. These packages are called Presentation layer, Data layer and Business Layer.
+
+\subsubsection{Presentation layer}
+In presentation layer there is a controller - a Spring MVC component that calls function according to the  HTML request and its URL that is mapped to particular function. This function executes simple operations such as verification of the passed parameters and calls to the other layers. The results of the functions from other layers may be saved to the org.springframework.ui.Model object and passed to the front-end. This layer never executes any more complicated actions, as those should be done within the business layer. Functions of the controller usually return the name of the view that should be displayed to the user.
+\subsubsection{Data layer}
+\subsubsection{Business layer}
+\subsection{Design of the frontend part}
 
 \chapter{Realisation}
+-Vsechno, co se zde popisuje se nachazi v business layer,v par slovech
+popsat obecny postupy pri realizaci a na co se zvlast kladl duraz
+\section{Customization of the export}
+There was a strong demand from the contracting authority to create module that would  let the user to customize the report. This is because every patient can have filled in fifteen cards. This means more than 340 properties that can be stored for every single patient. Nevertheless not all of them are needed to be exported in certain situations. Therefore was needed to implement some solution, that would allow user to select only those cards or properties of those cards, that should be exported.
+OBRAZEK TREE VIEW
+\section{Export to the particular formats}
+During the  programming of the classes that procure the logic of the reporting, I was trying to use the fact, that there already exist java libraries that can export data to docx, pdf, xls and csv formats. I also avoided the duplication of the code by transforming data from one format to another. Thanks to these measures, it is much easier to do changes in the code of the classes that handle export itself and it also eases the understanding of the code to anybody, who would read it.
+\subsection{txt}
+Export to the text format is realized by components form java.io.* package. Specifically java.io.FileOutputStream, java.io.OutputStreamWriter and java.io.BufferedWriter. Output is encoded to UTF-8 format. Every property is printed out to a new line, sections are delimited by dash lines, star lines or empty lines.
+\subsection{docx}
+Export to the docx format was not as easy as to the txt, so I decided to look up suitable libraries, compare them and use that one, which would best suit my needs. After researching the possible solutions I ended up with two libraries - apache POI and docx4j.
+o POI
+o docx4j
+Proc jsem se rozhodl o docx4j
+\subsection{xls}
+As well as for the docx format, I used that there were already programmed libraries for export to xls.
+POI 
+Neco dalsiho
+Proc jsem se rozhodl pro POI
+\subsection{pdf}
+There are of course java libraries for export data to pdf as well, nevertheless I've chosen different approach. While I already had implemented the export to docx, I've chosen not to implement export to pdf, but to create file with data exported to docx and using the classes form apache.poi.xwpf.converter.* package convert this file to pdf.
+K cemu je to dobry
+\subsection{csv}
+Before I started to implement the export to csv format, I was also thinking, if I should implement whole logic of export to csv, but then I decided to proceed obdobne as in the case of implementation of the export to pdf. Nevertheless now I don't use file with data exported to docx, but file with export to xls, as this format can be easily transformed to csv and vice versa. During the export to csv I create xls file with exported data at first and then I walk through this file and print out the values to the file via the classes from java.io.* package. These are the same classes, that have been used in the export to txt. Based on the requirements of the contracting authority, the comma, as a standard delimiter in csv format, has been replaced with semicolon. The main reason of this change was a fact, that every card, that patient may have, contains comment, which is a text, which may also contain commas. As the semicolon is a much less used character in the sentences, it was decided to use it as a delimiter. Otherwise the report could look confusingly for the user
+\section{Security and anonymization}
+In GENEPI - the information system there are 3 main levels of an access, according to the visibility of the patient's data.
+\begin{enumerate}
+\item{Administrators}
 
-\setsecnumdepth{part}
+Administrators don't have any access to the patient's data. They are not even able to access the URL to view or export these data.
+\item{Researchers}
+
+Researchers have limited access to patient's data, but they are not allowed to see sensitive data.  Their job is to analyze and to research data from the IS and they mustwork only with the data they need and they're allowed to see.
+\item{Doctors}
+
+Doctors 
+\end{enumerate}
+\section{Export of the verified patients}
+\section{Custom sets}
 \chapter{Conclusion}
-
 
 \bibliographystyle{csn690}
 \bibliography{mybibliographyfile}
