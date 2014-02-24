@@ -49,17 +49,48 @@
 % \newacronym{FIT}{FIT}{Fakulta informa{\v c}n{\' i}ch technologi{\' i}}
 
 \chapter{Introduction}
-The reporting module, part of the GENEPI - the information system, adds an important function to this software. Thanks to this module the user will be able to export data saved in the system to sundry formats. This is useful for the doctors that take care of patients with epilepsy, as well as for the researchers that make analysis above the data from this system. Due to the fact, that users, who should work with the exported data, have different access levels and different requirements on the format of the exported data, there is a need to make the modul to be able to anonymize sensitive data as well as to export data to different formats. The contracting authority also requested that the user could choose which data does he want to export. For research purposes is also important to determine, if data that should be exported, contain only patients, whose data was verified by the user with role "superdoctor".
-
+The reporting module, part of the GENEPI - the information system, adds an important function to this software. Thanks to this module the user will be able to export data saved in the system to sundry formats. This is useful for the doctors that take care of patients with epilepsy, as well as for the researchers that make analysis above the data from this system. In this thesis I'll describe the design and implementation of the reporting module, as well the process of final testing of this product.
 
 \chapter{Analysis and design}
 The repoting module, as well as the whole information system, was designed given the requested robustness, accessibility, reliability and the cleanness of the code. GENEPI has a three-tier architecture, uses access according to the roles of the users via Spring Security and thanks to the optimalized data layer it saves the computing resources.
 
+Due to the fact, that users, who should work with the exported data, have different access levels and different requirements on the format of the exported data, there is a need to make the modul to be able to anonymize sensitive data as well as to export data to different formats. The contracting authority also requested that the user could choose which data does he want to export. For research purposes is also important to determine, if data that should be exported, contain only patients, whose data were verified by the povereny user.
+
 \section{GENEPI - the information system}
-That the reader could fully understand the functioning of the reporting module, first of all it is needed to introduce the information system that it extends. GENEPI - the information system was being created within the subjects BI-SP1 and BI-SP2 on the Czech Technical University, faculty of information technologies in the school year 2012/2013 as a student's project. It should replace the original information system that was used in the Faculty Hospital Motol in Prague for maintaining patients in epileptosurgical programme. The main reasons for replacing the original system was a fact, that it didn't comply with the current requirements of the medics, contained bugs and its design wasn't optimal. GENEPI IS is written in java programming language, using frameworks Spring 3 and Hibernate 4.2.2. Frontend part is realized via JSP, using HTLM5, Javascript and CSS. Libraries that were used to ease the programming of the fronetnd were Twitter Bootstrap and jQuery. As a database has been chosen MySQL 5.5.27 and as an application server Apache Tomcat 7. All of the used libraries are distributed under some kind of free license. The GENEPI is a bilingual software due to the expected deployment in the Miami Children's hospital in Florida, the United States of America. Languages that are currently supported, are czech and english, nevertheless thanks to the suitably implemented localization it is easy to extend the application and add any other language. During the whole period of the programming of the system, the team consulted the approach often  and regularly with contracting authority, to fully meet the needs of medics.
+That the reader could fully understand the functioning of the reporting module, first of all it is needed to introduce the information system that it extends. GENEPI - the information system was being created within the subjects BI-SP1 and BI-SP2 on the Czech Technical University, Faculty of Information Technologies in the school year 2012/2013 as a student's project. It should replace the original information system that was used in the Faculty Hospital Motol in Prague for maintaining patients in epileptosurgical programme. The main reasons for replacing the original system was a fact, that it didn't comply with the current requirements of the medics, contained bugs and its design wasn't optimal. GENEPI IS is being developed in the java programming language, using frameworks Spring 3 and Hibernate 4.2. Front-end part is realized via JSP, using HTLM5, Javascript and CSS. Libraries that were used to ease the programming of the front-end were Twitter Bootstrap and jQuery. As a database has been chosen MySQL 5.5 and as an application server Apache Tomcat 7. All of the used libraries are distributed under some kind of free license. The GENEPI is a bilingual software due to the expected deployment in the Miami Children's hospital in Florida, the United States of America. Languages that are currently supported, are czech and english, nevertheless thanks to the suitably implemented localization it is easy to extend the application and add any other language. During the whole period of the programming of the system, the team consulted the approach often  and regularly with contracting authority, to fully meet the needs of the medics.
 
 \section{Design of the reporting module}
 Architecture of the reporting module doesn't differ from the architecture of the rest of the information system. Thanks to this, I could guarantee the robustness and the security of this module. It has also provided me an easy and elegant way to access the other components in the system.
+
+
+
+In this tree diagram you can see the parts of the IS, ktere se tykaji of reporting module:
+
+	\dirtree{%
+		.1 Backend.
+		.2 src.
+		.3 main.
+		.4 java\DTcomment{java classes}.
+		.5 cz.
+		.6 cvut.
+		.7 fit.
+		.8 genepi.
+		.9 businessLayer.
+		.10 service\DTcomment{interface of the service classes}.
+		.10 serviceImpl\DTcomment{implementation of service}.
+		.9 dataLayer.
+		.10 DAO\DTcomment{interface of the data classes}.
+		.10 DAOImpl\DTcomment{implementation of DAO}.
+		.10 entity\DTcomment{entities}.		
+		.9 presentationLayer\DTcomment{controllers}.
+		.4 resources\DTcomment{properties files}.
+		.4 webapp\DTcomment{files for front-end}.
+		.5 resources\DTcomment{front-end libraries, pictures and other media}.
+		.5 WEB-INF.
+		.6 tags\DTcomment{templates for jsp}.
+		.6 views\DTcomment{jsp files}.
+	}
+
 
 \subsection{Design of the back-end part}
 Back-end part of the reporting module was designed to follow the three-tier architecture of the rest of the system. Thus the classes that this modul uses, are devided into three different packages. Every package contains classes that belong to the same tier. These packages are called Presentation layer, Data layer and Business Layer.
@@ -70,11 +101,28 @@ In presentation layer there is a controller - a Spring MVC component that calls 
 \subsubsection{Business layer}
 \subsection{Design of the frontend part}
 
-\chapter{Realisation}
+	\chapter{Realisation}
 -Vsechno, co se zde popisuje se nachazi v business layer,v par slovech
 popsat obecny postupy pri realizaci a na co se zvlast kladl duraz
 \section{Customization of the export}
 There was a strong demand from the contracting authority to create module that would  let the user to customize the report. This is because every patient can have filled in fifteen cards. This means more than 340 properties that can be stored for every single patient. Nevertheless not all of them are needed to be exported in certain situations. Therefore was needed to implement some solution, that would allow user to select only those cards or properties of those cards, that should be exported.
+Vzhledem k high amount of those properties, it was quite challenging to create solution, that would meet the requirements and will be user-friendly at the same time. Treeview on the fron-end and special entity on the back-end.
+
+On the front-end there was a implemented a customized treeview, where every item has a checkbox. Patient's cards are represented by the nodes, whereas porperties of these cards are represented by the leaves of this tree. By checking and unchecking these items, the user can choose, what all should be involved in the exported data.
+Here I attach a simple example of the treeview I was writting about:
+
+
+	\dirtree{%
+		.1 Anamnesis\DTcomment{anamnesis card}.
+		.2 Neco.
+		.2 Neco jineho.
+		.1 Seizures\DTcomment{seizure card}.
+		.2 Seizure property.
+		.2 Another seizure property.
+	}
+
+After confirming the export form, the state of the treeview is saved to an entity called ExportParams. This entity has a boolean property for every single value from the treeview in export form. Thanks to this, I am able to determine, which properties the user wanted to export and which didn't. It gives me another advantage - I can save the current setting of the treeview for later usage, but I will speak about this feature later.
+ 
 OBRAZEK TREE VIEW
 \section{Export to the particular formats}
 During the  programming of the classes that procure the logic of the reporting, I was trying to use the fact, that there already exist java libraries that can export data to docx, pdf, xls and csv formats. I also avoided the duplication of the code by transforming data from one format to another. Thanks to these measures, it is much easier to do changes in the code of the classes that handle export itself and it also eases the understanding of the code to anybody, who would read it.
@@ -103,13 +151,19 @@ In GENEPI - the information system there are 3 main levels of an access, accordi
 Administrators don't have any access to the patient's data. They are not even able to access the URL to view or export these data.
 \item{Researchers}
 
-Researchers have limited access to patient's data, but they are not allowed to see sensitive data.  Their job is to analyze and to research data from the IS and they mustwork only with the data they need and they're allowed to see.
+Researchers have limited access to patient's data - they are not allowed to see sensitive data.
 \item{Doctors}
 
-Doctors 
+Doctors have full access to patient's data
+
+Because of this fact, it was needed to implement some way, how to anonymize the exported data. I have implemented two types of anonymization - volitelnou a povinnou.
+
+Volitelna anonymization is accessable only to doctors. Before they commit the expoert, they can choose if they want to anonymize the data. This could be usefull for example in the situations, when the doctor needs to provide the data to somebody, who normally doesn't have an access to the system and zaroven can't see the sensitive informations. On the other hand, the doctor still has a possibility to export unanonymized data, which might be usefull for the medical purposes.
+Povinna anonymization is done automatically, when somebody,who doesn't have dostatecne pristupove upravneni wants to export data. This feature will prevent anybody unauthorized from seeing the sensitive data.
 \end{enumerate}
 \section{Export of the verified patients}
 \section{Custom sets}
+\chapter{Testing}
 \chapter{Conclusion}
 
 \bibliographystyle{csn690}
