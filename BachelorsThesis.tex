@@ -57,7 +57,8 @@ The repoting module, as well as the whole information system, was designed given
 Due to the fact, that users, who should work with the exported data, have different access levels and different requirements on the format of the exported data, there is a need to make the modul to be able to anonymize sensitive data as well as to export data to different formats. The contracting authority also requested that the user could choose which data does he want to export. For research purposes is also important to determine, if data that should be exported, contain only patients, whose data were verified by the povereny user.
 
 \section{GENEPI - the information system}
-That the reader could fully understand the functioning of the reporting module, first of all it is needed to introduce the information system that it extends. GENEPI - the information system was being created within the subjects BI-SP1 and BI-SP2 on the Czech Technical University, Faculty of Information Technologies in the school year 2012/2013 as a student's project. It should replace the original information system that was used in the Faculty Hospital Motol in Prague for maintaining patients in epileptosurgical programme. The main reasons for replacing the original system was a fact, that it didn't comply with the current requirements of the medics, contained bugs and its design wasn't optimal. GENEPI IS is being developed in the java programming language, using frameworks Spring 3 and Hibernate 4.2. Front-end part is realized via JSP, using HTLM5, Javascript and CSS. Libraries that were used to ease the programming of the front-end were Twitter Bootstrap and jQuery. As a database has been chosen MySQL 5.5 and as an application server Apache Tomcat 7. All of the used libraries are distributed under some kind of free license. The GENEPI is a bilingual software due to the expected deployment in the Miami Children's hospital in Florida, the United States of America. Languages that are currently supported, are czech and english, nevertheless thanks to the suitably implemented localization it is easy to extend the application and add any other language. During the whole period of the programming of the system, the team consulted the approach often  and regularly with contracting authority, to fully meet the needs of the medics.
+That the reader could fully understand the functioning of the reporting module, first of all it is needed to introduce the information system that it extends. GENEPI - the information system was being created within the subjects BI-SP1 and BI-SP2 on the Czech Technical University, Faculty of Information Technologies in the school year 2012/2013 as a student's project. It should replace the original information system that was used in the Faculty Hospital Motol in Prague for maintaining patients in epileptosurgical programme. The main reasons for replacing the original system was a fact, that it didn't comply with the current requirements of the medics, contained bugs and its design wasn't optimal. GENEPI IS is being developed in the java programming language, using frameworks Spring 3 and Hibernate 4.2. Front-end part is realized via JSP, using HTLM5, Javascript and CSS. Libraries that were used to ease the programming of the front-end were Twitter Bootstrap and jQuery. As a database has been chosen MySQL 5.5 and as an application server Apache Tomcat 7. All of the used libraries are distributed under some kind of free license. The GENEPI is a bilingual software due to the expected deployment in the Miami Children's hospital in Florida, the United States of America. Languages that are currently supported, are czech and english, nevertheless thanks to the sui         * TODO
+tably implemented localization it is easy to extend the application and add any other language. During the whole period of the programming of the system, the team consulted the approach often  and regularly with contracting authority, to fully meet the needs of the medics.
 
 \section{Design of the reporting module}
 Architecture of the reporting module doesn't differ from the architecture of the rest of the information system. Thanks to this, I could guarantee the robustness and the security of this module. It has also provided me an easy and elegant way to access the other components in the system.
@@ -79,7 +80,7 @@ In this tree diagram you can see the parts of the IS, ktere se tykaji of reporti
 		.10 service\DTcomment{interface of the service classes}.
 		.10 serviceImpl\DTcomment{implementation of service}.
 		.9 dataLayer.
-		.10 DAO\DTcomment{interface of the data classes}.
+		.10 DAO\DTcomment{interface of the DAO}.
 		.10 DAOImpl\DTcomment{implementation of DAO}.
 		.10 entity\DTcomment{entities}.		
 		.9 presentationLayer\DTcomment{controllers}.
@@ -96,16 +97,37 @@ In this tree diagram you can see the parts of the IS, ktere se tykaji of reporti
 Back-end part of the reporting module was designed to follow the three-tier architecture of the rest of the system. Thus the classes that this modul uses, are devided into three different packages. Every package contains classes that belong to the same tier. These packages are called Presentation layer, Data layer and Business Layer.
 
 \subsubsection{Presentation layer}
-In presentation layer there is a controller - a Spring MVC component that calls function according to the  HTML request and its URL that is mapped to particular function. This function executes simple operations such as verification of the passed parameters and calls to the other layers. The results of the functions from other layers may be saved to the org.springframework.ui.Model object and passed to the front-end. This layer never executes any more complicated actions, as those should be done within the business layer. Functions of the controller usually return the name of the view that should be displayed to the user.
+In the presentation layer there is a controller - a Spring MVC component that calls function according to the  HTML request and its URL that is mapped to a particular function. This function executes simple operations such as verification of the passed parameters and calls to the other layers. The results of the functions from other layers may be saved to the org.springframework.ui.Model object and passed to the front-end. This layer never executes any more complicated actions, as those should be done within the business layer. Functions of the controller usually return the name of the view that should be displayed to the user.
 \subsubsection{Data layer}
+This layer contains three packages - DAO, DAOImpl and entity. In DAO package, there are interfaces of the data access objects stored, in DAOImpl are the classes that implement the interfaces from DAO package and finally in entity package, we can find the entity classes.
+In DAOImpl classes you can find the functions, that are used to access the database and to get some data from it. There is direct use of hibernate functions or queries in HQL.
+In entity classes is described, how the structures of the tables in the database look like. Every entity contains a property for every single column of the table. The type of this variable must match the type of the column of the table. Every property has to have a getter and a setter as well. Thanks to anotations from javax.* and org.hibernate.validator.constrains.* it is possible to check the requirements for perks of the input that should be saved to the database, ie. minimal or maximal size, regexp pattern or if the input may be blank. Very important is hibernate anotation @Column, as it describes the mapping of the property to the certain table in the database.
+
+I would like to point out the generic GenericDAO and GenericDAOImpl classes that have been implemented.
+These are abstract classes that were implemented to ease the develomplent team the programming of other DAO and DAOImpl classes. In the GenericDAOImpl class there are implemented the most used methods, that may be used by any entity such as save, delete, getCount, getCountOfUnhidden, findByID and others methods. The other DAO and DAOImpl methods then extend these generic classes so then it's not needed to implement these basic functions to every single class and the programmer had to programme only those functions, that were unique for that certain class.
 \subsubsection{Business layer}
+There are three packages in in this tier - concretly those are service, serviceImpl and VO. Service contains interfaces whereas in serviceImpl are the classes that implement the them. It is OBDOBNE as in the data tier. The third package - VO - contains classes, that are used to transform classes from the form in which the data come from the database - in enitity classes - to the form, that is more VHODNY for work and presentation of those data. This is the the reason why these are col VO classes.
+
 \subsection{Design of the frontend part}
 
+
 	\chapter{Realisation}
--Vsechno, co se zde popisuje se nachazi v business layer,v par slovech
+All that will be described in this chapter NACHAZI SE in the business layer. The standard approach during performing an export is NASLEDUJICI:
+
+\begin{enumerate}
+\item{ The user chooses in the export view the properties that wants to include to the exported file, the format, anonymization option and hits the export button }
+\item{ PatientExportPOST method in PatientController entity is called and according to the given parameters is calls method to export the data to the right format. It also chcecks if the data should be anonymized and if the user isn't authorized to see sensitive data, then it sets the anonymize flag to true automatically. All given parameters with all those information are passed to called export function in the Bussines tier.}
+\item{ In this step we've moved from Presentation tier to Business tier, where one of the methods for export to certain format was called. This is the part, where the data is written to the file itself. The program iterates through all the patient that user wanted to export and POSTUPNE prints out their data.
+}
+
+\end{enumerate}
+
+
+OBRAZEK DIAGRAMU
+
 popsat obecny postupy pri realizaci a na co se zvlast kladl duraz
 \section{Customization of the export}
-There was a strong demand from the contracting authority to create module that would  let the user to customize the report. This is because every patient can have filled in fifteen cards. This means more than 340 properties that can be stored for every single patient. Nevertheless not all of them are needed to be exported in certain situations. Therefore was needed to implement some solution, that would allow user to select only those cards or properties of those cards, that should be exported.
+There was a strong demand from the contracting authority to create module that would  let the user to customize the report. This is because every patient can have filled in fifteen cards. This means circa than 340 properties that can be stored for every single patient. Nevertheless not all of them are needed to be exported in certain situations. Therefore was needed to implement some solution, that would allow user to select only those cards or properties of those cards, that should be exported.
 Vzhledem k high amount of those properties, it was quite challenging to create solution, that would meet the requirements and will be user-friendly at the same time. Treeview on the fron-end and special entity on the back-end.
 
 On the front-end there was a implemented a customized treeview, where every item has a checkbox. Patient's cards are represented by the nodes, whereas porperties of these cards are represented by the leaves of this tree. By checking and unchecking these items, the user can choose, what all should be involved in the exported data.
@@ -153,7 +175,7 @@ Administrators don't have any access to the patient's data. They are not even ab
 
 Researchers have limited access to patient's data - they are not allowed to see sensitive data.
 \item{Doctors}
-
+\end{enumerate}
 Doctors have full access to patient's data
 
 Because of this fact, it was needed to implement some way, how to anonymize the exported data. I have implemented two types of anonymization - volitelnou a povinnou.
@@ -177,6 +199,8 @@ Povinna anonymization is done automatically, when somebody,who doesn't have dost
 \begin{description}
 	\item[GUI] Graphical user interface
 	\item[XML] Extensible markup language
+	\item[HQL] Hibernate query language
+	\item[VO] View object
 \end{description}
 
 
