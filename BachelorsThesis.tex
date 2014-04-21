@@ -75,7 +75,7 @@ The repoting module, as well as the whole information system, was designed given
 Due to the fact, that users, who should work with the exported data, have different levels of access and different requirements on the format of the exported data, there is a need to make the module to be able to anonymize sensitive data as well as to export data to different formats. The contracting authority also requested that the user could choose which data does he want to export. For research purposes is also important to determine, if data that should be exported, contain only patients, whose data were verified by the intrusted user.
 
 \section{GENEPI - the information system}
-That the reader could fully understand the functioning of the reporting module, first of all it is needed to introduce the information system that it extends. GENEPI - the information system was being created within the subjects BI-SP1 and BI-SP2 on the Czech Technical University, Faculty of Information Technologies in the school year 2012/2013 as a student's project. It should replace the original information system that was used in the Faculty Hospital Motol in Prague for maintaining patients in epileptosurgical programme. The main reasons for replacing the original system was a fact, that it didn't comply with the current requirements of the medics, contained bugs and its design wasn't optimal. GENEPI IS is being developed in the java programming language, using frameworks Spring 3 and Hibernate 4.2. Front-end part is realized via JSP, using HTLM5, Javascript and CSS. Libraries that were used to ease the programming of the front-end were Twitter Bootstrap 2.3.2 and jQuery. As a database has been chosen MySQL 5.5 and as an application server Apache Tomcat 7. All of the used libraries are distributed under some kind of free license. The GENEPI is a bilingual software due to the expected deployment in the Miami Children's hospital in Florida, the United States of America. Languages that are currently supported, are czech and english, nevertheless thanks to the suitably implemented localization it is easy to extend the application and add any other language. During the whole period of the programming of the system, the team consulted the approach often  and regularly with contracting authority, to fully meet the needs of the medics.
+That the reader could fully understand the functioning of the reporting module, first of all it is needed to introduce the information system that it extends. GENEPI - the information system was being created within the subjects BI-SP1 and BI-SP2 on the Czech Technical University, Faculty of Information Technologies in the school year 2012/2013 as a student's project. It should replace the original information system that was used in the Faculty Hospital Motol in Prague for maintaining patients in epileptosurgical programme. The main reasons for replacing the original system was a fact, that it didn't comply with the current requirements of the medics, contained bugs and its design wasn't optimal. GENEPI IS is being developed in the java programming language, using frameworks Spring 3 and Hibernate 4.2. Front-end part is realized via JSP, using HTLM5, Javascript and CSS. Libraries that were used to ease the programming of the front-end were Twitter Bootstrap and jQuery. As a database has been chosen MySQL 5.5 and as an application server Apache Tomcat 7. All of the used libraries are distributed under some kind of free license. The GENEPI is a bilingual software due to the expected deployment in the Miami Children's hospital in Florida, the United States of America. Languages that are currently supported, are czech and english, nevertheless thanks to the suitably implemented localization it is easy to extend the application and add any other language. During the whole period of the programming of the system, the team consulted the approach often  and regularly with contracting authority, to fully meet the needs of the medics.
 
 \section{Design of the reporting module}
 Architecture of the reporting module doesn't differ from the architecture of the rest of the information system. Thanks to this, I could guarantee the robustness and the security of this module. It has also provided me an easy and elegant way to access the other components in the system.
@@ -133,35 +133,40 @@ As well as the beckend part, the frontend had to follow the style and design of 
 Used technologies are:
 
 \begin{enumerate}
-\item{Twitter Bootstrap 2.3.2}
+\item{Twitter Bootstrap}
+
+Twitter Bootstrap is the most popular front-end framework for developing responsive, mobile first projects on the web. CITOVAT http://getbootstrap.com/. It is build with HTML, CSS and JavaScript.
+
 \item{jQuery}
-jQuery is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers. With a combination of versatility and extensibility, jQuery has changed the way that millions of people write JavaScript.\cite{JJ92}
+
+jQuery is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers. With a combination of versatility and extensibility, jQuery has changed the way that millions of people write \cite{JJ92} JavaScript.
 \end{enumerate}
 
-	\chapter{Realisation}
+\chapter{Realisation}
 All that will be described in this chapter is located in the business layer. The standard approach when performing an export is following:
 
 \begin{enumerate}
 \item{ The user chooses in the export view the properties that he wants to include to the exported file, the format, anonymization option and hits the export button }
 \item{ PatientExportPOST method in PatientController class is called and according to the given parameters is calls method to export the data to the right format. It also checks if the data should be anonymized and if the user isn't authorized to see sensitive data, then it sets the anonymize flag to true automatically. All given parameters with all those informations are passed to called export function in the Bussines tier.}
-\item{ In this step we've moved from Presentation tier to Business tier, where one of the methods for export to certain format was called. This is the part, where the data is being written to the file itself. The program iterates through all the patient that user wanted to export and gradually prints out their data. 
+\item{ In this step we've moved from Presentation tier to Business tier, where one of the methods for export to certain format was called. This is the part, where the data is being written to the file itself. The program iterates through all the patient that user wanted to export and gradually prints out their data.}
+At first the patient's header is printed out. This header contains information about patient such as his age, gender, age at the beginning of the epilepsy and other important data. It may also contain sensitive data such as his name, address or other contact information.
+\item{ In the last step is the user redirected to an URL of the newly created file with exported data to download. This file persists on the server and can be repeatedly downloaded. The time that is this file accessable depends on the setting of the server CRON, as this should regulary delete old files in the folder dedicated for export files.}
 
-At first the patient's header is printed out. This header contains information about patient such as his age, gender, age at the beginning of the epilepsy and other important data. It may also contain sensitive data such as his name, address or other contact 
-}
 \end{enumerate}
 
-	\begin{figure}\centering
-	\includegraphics[width=0.5\paperwidth]{exportDiagram}
+\begin{figure}\centering
+\includegraphics[width=0.5\paperwidth]{exportDiagram}
 		\caption{export activity diagram}\label{fig:logo}
-	\end{figure}
+\end{figure}
 
-popsat obecny postupy pri realizaci a na co se zvlast kladl duraz
+The goal was to make the whole process secure, reliable and easy to understand for programmer who would read the code, as well as for the user that would use the export module. Thanks to chosen design and implementation approach were these requirements satisfied.
 \section{Customization of the export}
 There was a strong demand from the contracting authority to create a module that would let the user to customize the report. This is because every patient can have filled in fifteen cards. This means circa 340 properties that can be stored for every single patient. Nevertheless not all of them are needed to be exported in certain situations. Therefore was needed to implement some solution, that would allow user to select only those cards or properties of those cards, that should be exported.
 Due to a high amount of those properties, it was quite challenging to create solution, that would meet the requirements and will be user-friendly at the same time. I've chosen treeview on the fron-end and special entity on the back-end.
 
 On the front-end there was implemented a customized treeview, where every item has a checkbox. Patient's cards are represented by the nodes, whereas porperties of these cards can be represented by the leaves of this tree or nodes as well. They may be nodes, if they denote some category that can hold some properties that couldn't exist withou their parent cathegory. By checking and unchecking these items, the user can choose, what all should be involved in the exported data. When unchecking the node, also all leaves of this node are deselected. On the other hand, by selecting even a single leaf from an unselected branch, the parent node is selected as well.
 Here I attach a simple example of the treeview I was writting about:
+
 
 
 	\dirtree{%
@@ -171,9 +176,21 @@ Here I attach a simple example of the treeview I was writting about:
 		.1 Seizures\DTcomment{seizure card}.
 		.2 Seizure property.
 		.2 Another seizure property.
+		.1 ....
+		.1 ....
+		.1 Neuropsychology\DTcomment{neuropsychology card}.
+		.2 Neuropsychology inner node.
+		.3 Neuropsychology property.
+		.3 Another Neuropsychology property.
+		.2 Another Neuropsycholgy inner node.
+		.3 Neuropsychology property.
+		.2 Neuropsychology property.
+		.1 ....
+		.1 ....
+		.1 Outcome\DTcomment{outcome card}.
 	}
 
-After confirming the export form, the state of the treeview is saved to an instance of an entity called ExportParams. This entity has a boolean property for every single value from the treeview in the export form. Thanks to this, I am able to determine, which properties the user wanted to export and which didn't. It gives me another advantage - I can save the current setting of the treeview for a later usage, but I will write yet about this feature later.
+After confirming the export form, the state of the treeview is saved to an instance of an entity called ExportParams. This entity has a boolean property for every single value from the treeview in the export form. Thanks to this, I am able to determine, which properties the user wanted to export and which didn't. It gives me another advantage - I can save the current setting of the treeview for a later usage, but I will write about this feature later.
 
 \section{Export to the particular formats}
 During the  programming of the classes that procure the logic of the reporting, I was trying to use the fact, that there already exist java libraries that can export data to docx, pdf, xls and csv formats. I also avoided the duplication of the code by transforming data from one format to another. Thanks to these measures, it is much easier to do changes in the code of the classes that handle export itself and it also eases the understanding of the code for anybody, who would read it.
@@ -228,6 +245,17 @@ Deleting of configurations is possible as well. Private configurations can be de
 
 On the other hand generic configurations are visible to all users in the system, therefore it is needed to determine, if a user who wants to delete some generic configuration, has even the right to perform this action. To delete a generic configuration, the user has to own a Superdoctor role. Then he's allowed to delete any generic configuration created by any other user.
 
+On the following pictures you can see the activity diagram of saving and then deleting of a configuration from the point of view of the user.
+\begin{figure}\centering
+\includegraphics[width=0.7\paperwidth]{createConfigurationDiagram}
+		\caption{create configuration activity diagram}\label{fig:logo}
+\end{figure}
+
+\begin{figure}\centering
+\includegraphics[width=0.7\paperwidth]{deleteConfigurationDiagram}
+		\caption{delete configuration activity diagram}\label{fig:logo}
+\end{figure}
+
 \section{Graphical user interface of the export module}
 On the following pictures I'll explain all components, that are used to controll the export view. During the phase of design and implementation of the view, I had to take into account the fact, that users of this module need a user-friendly interface that could provide them all tools that need to customize exports.
 
@@ -236,10 +264,13 @@ On the first picture, you can see the interface for loading and deleting of cust
 On the next picture there is displayed a section for export itself. Firstly there is a list of IDs of patients that are prepared for an export. The user may access the patient's overview by clicking to his ID. Next it's needed to choose the format for export via several radiobuttons. In the case, that user chooses as a format docx or pdf, the NEJAKA KOMPONENTA appears and lets him to choose if exported data should be formated into tables or as a text. If the user has a doctor role assigned, then he's able to see a combobox, that allows him to anonymize exported data.
 
 \chapter{Testing}
-\chapter{Conclusion}
+\begin{conclusion}
+	%sem napite závìr Vaí práce
+\end{conclusion}
 
-\bibliographystyle{csn690}
-\bibliography{mybibliographyfile}
+\bibliographystyle{iso690.bst}
+\bibliography{ref}
+
 
 \setsecnumdepth{all}
 \appendix
@@ -254,6 +285,8 @@ On the next picture there is displayed a section for export itself. Firstly ther
 	\item[VO] View object
 \end{description}
 
+\bibliographystyle{iso690.bst}
+\bibliography{ref}
 
 \chapter{Contents of enclosed CD}
 

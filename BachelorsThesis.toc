@@ -14,16 +14,16 @@
 \contentsline {subsection}{\numberline {2.2.2}Design of the frontend part}{6}{subsection.2.2.2}
 \contentsline {chapter}{\chapternumberline {3}Realisation}{9}{chapter.3}
 \contentsline {section}{\numberline {3.1}Customization of the export}{11}{section.3.1}
-\contentsline {section}{\numberline {3.2}Export to the particular formats}{11}{section.3.2}
+\contentsline {section}{\numberline {3.2}Export to the particular formats}{12}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}txt}{12}{subsection.3.2.1}
 \contentsline {subsection}{\numberline {3.2.2}docx}{12}{subsection.3.2.2}
 \contentsline {subsection}{\numberline {3.2.3}xls}{12}{subsection.3.2.3}
-\contentsline {subsection}{\numberline {3.2.4}pdf}{12}{subsection.3.2.4}
+\contentsline {subsection}{\numberline {3.2.4}pdf}{13}{subsection.3.2.4}
 \contentsline {subsection}{\numberline {3.2.5}csv}{13}{subsection.3.2.5}
 \contentsline {section}{\numberline {3.3}Security and anonymization}{13}{section.3.3}
 \contentsline {section}{\numberline {3.4}Custom configurations}{14}{section.3.4}
 \contentsline {section}{\numberline {3.5}Graphical user interface of the export module}{15}{section.3.5}
-\contentsline {chapter}{\chapternumberline {4}Testing}{17}{chapter.4}
-\contentsline {chapter}{\chapternumberline {5}Conclusion}{19}{chapter.5}
-\contentsline {appendix}{\chapternumberline {A}Acronyms}{21}{appendix.A}
-\contentsline {appendix}{\chapternumberline {B}Contents of enclosed CD}{23}{appendix.B}
+\contentsline {chapter}{\chapternumberline {4}Testing}{19}{chapter.4}
+\contentsline {chapter}{Conclusion}{21}{chapter*.5}
+\contentsline {appendix}{\chapternumberline {A}Acronyms}{23}{appendix.A}
+\contentsline {appendix}{\chapternumberline {B}Contents of enclosed CD}{25}{appendix.B}
