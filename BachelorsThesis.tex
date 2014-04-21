@@ -75,7 +75,7 @@ The repoting module, as well as the whole information system, was designed given
 Due to the fact, that users, who should work with the exported data, have different levels of access and different requirements on the format of the exported data, there is a need to make the module to be able to anonymize sensitive data as well as to export data to different formats. The contracting authority also requested that the user could choose which data does he want to export. For research purposes is also important to determine, if data that should be exported, contain only patients, whose data were verified by the intrusted user.
 
 \section{GENEPI - the information system}
-That the reader could fully understand the functioning of the reporting module, first of all it is needed to introduce the information system that it extends. GENEPI - the information system was being created within the subjects BI-SP1 and BI-SP2 on the Czech Technical University, Faculty of Information Technologies in the school year 2012/2013 as a student's project. It should replace the original information system that was used in the Faculty Hospital Motol in Prague for maintaining patients in epileptosurgical programme. The main reasons for replacing the original system was a fact, that it didn't comply with the current requirements of the medics, contained bugs and its design wasn't optimal. GENEPI IS is being developed in the java programming language, using frameworks Spring 3 and Hibernate 4.2. Front-end part is realized via JSP, using HTLM5, Javascript and CSS. Libraries that were used to ease the programming of the front-end were Twitter Bootstrap and jQuery. As a database has been chosen MySQL 5.5 and as an application server Apache Tomcat 7. All of the used libraries are distributed under some kind of free license. The GENEPI is a bilingual software due to the expected deployment in the Miami Children's hospital in Florida, the United States of America. Languages that are currently supported, are czech and english, nevertheless thanks to the suitably implemented localization it is easy to extend the application and add any other language. During the whole period of the programming of the system, the team consulted the approach often  and regularly with contracting authority, to fully meet the needs of the medics.
+That the reader could fully understand the functioning of the reporting module, first of all it is needed to introduce the information system that it extends. GENEPI - the information system was being created within the subjects BI-SP1 and BI-SP2 on the Czech Technical University, Faculty of Information Technologies in the school year 2012/2013 as a student's project. It should replace the original information system that was used in the Faculty Hospital Motol in Prague for maintaining patients in epileptosurgical programme. The main reasons for replacing the original system was a fact, that it didn't comply with the current requirements of the medics, contained bugs and its design wasn't optimal. GENEPI IS is being developed in the java programming language, using frameworks Spring 3 and Hibernate 4.2. Front-end part is realized via JSP, using HTLM5, Javascript and CSS. Libraries that were used to ease the programming of the front-end were Twitter Bootstrap 2.3.2 and jQuery. As a database has been chosen MySQL 5.5 and as an application server Apache Tomcat 7. All of the used libraries are distributed under some kind of free license. The GENEPI is a bilingual software due to the expected deployment in the Miami Children's hospital in Florida, the United States of America. Languages that are currently supported, are czech and english, nevertheless thanks to the suitably implemented localization it is easy to extend the application and add any other language. During the whole period of the programming of the system, the team consulted the approach often  and regularly with contracting authority, to fully meet the needs of the medics.
 
 \section{Design of the reporting module}
 Architecture of the reporting module doesn't differ from the architecture of the rest of the information system. Thanks to this, I could guarantee the robustness and the security of this module. It has also provided me an easy and elegant way to access the other components in the system.
@@ -129,14 +129,21 @@ I would like to point out the generic GenericDAO and GenericDAOImpl classes that
 These are abstract classes that were implemented to ease the process of programming of the other DAO and DAOImpl classes. In the GenericDAOImpl class there are implemented the most used methods, that may be used by any entity such as save, delete, getCount, getCountOfUnhidden, findByID and many other. The other DAO and DAOImpl methods extend these generic classes so then it wasn't needed to implement these basic functions to every single class and the programmer had to programme only those functions, that were unique for that certain class.
 
 \subsection{Design of the frontend part}
-
-
-	\chapter{Realisation}
-All that will be described in this chapter is located in the business layer. The standard approach during performance of an export is following:
+As well as the beckend part, the frontend had to follow the style and design of the rest of the system. If I wouldn't do it, the work with export module could be confusing for users. On the basis of these facts, it was needed to implement frontend based on the same technologies as the rest of the Genepi IS. Thanks to this approach the UX from work with this module is positive and user accepts export module as a casual part of the IS.
+Used technologies are:
 
 \begin{enumerate}
-\item{ The user chooses in the export view the properties that wants to include to the exported file, the format, anonymization option and hits the export button }
-\item{ PatientExportPOST method in PatientController entity is called and according to the given parameters is calls method to export the data to the right format. It also checks if the data should be anonymized and if the user isn't authorized to see sensitive data, then it sets the anonymize flag to true automatically. All given parameters with all those informations are passed to called export function in the Bussines tier.}
+\item{Twitter Bootstrap 2.3.2}
+\item{jQuery}
+jQuery is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers. With a combination of versatility and extensibility, jQuery has changed the way that millions of people write JavaScript.\cite{JJ92}
+\end{enumerate}
+
+	\chapter{Realisation}
+All that will be described in this chapter is located in the business layer. The standard approach when performing an export is following:
+
+\begin{enumerate}
+\item{ The user chooses in the export view the properties that he wants to include to the exported file, the format, anonymization option and hits the export button }
+\item{ PatientExportPOST method in PatientController class is called and according to the given parameters is calls method to export the data to the right format. It also checks if the data should be anonymized and if the user isn't authorized to see sensitive data, then it sets the anonymize flag to true automatically. All given parameters with all those informations are passed to called export function in the Bussines tier.}
 \item{ In this step we've moved from Presentation tier to Business tier, where one of the methods for export to certain format was called. This is the part, where the data is being written to the file itself. The program iterates through all the patient that user wanted to export and gradually prints out their data. 
 
 At first the patient's header is printed out. This header contains information about patient such as his age, gender, age at the beginning of the epilepsy and other important data. It may also contain sensitive data such as his name, address or other contact 
@@ -177,7 +184,7 @@ Export to the docx format was not as easy as to the txt, so I decided to look up
 o POI
 o docx4j
 
-I've chosen to use docx4j because it provided me more functionalities and clearer API. The main problem I had with Apachi POI was the formating of the cells, when I wanted to to format data to the tables. I could hardly adjust the size of the cells and redefine my own styles of headers and text.
+I've chosen to use docx4j because it has provided me more functionalities and clearer API then Apachai POI could. The main problem I had with Apachi POI was the formating of the cells, when I wanted to to format data to the tables. I could hardly adjust the size of the cells and redefine my own styles of headers and text.
 \subsection{xls}
 As well as for the docx format, I used that there already were programmed libraries for export to xls.
 I've chosen to use Apache POI library, as this library provides me anything I could need to export data to  a xls file.
@@ -186,8 +193,11 @@ There are of course java libraries that provide you some way to export data to p
 \subsection{csv}
 Before I started to implement the export to csv format, I was also thinking, if I should implement whole logic of export to csv, but then I decided to proceed similarly as in the case of implementation of the export to pdf. Nevertheless in this case I don't use file with data exported to docx, but file created by export to xls, as this format can be easily transformed to csv and vice versa. During the export to csv I create at first xls file with exported data and then I walk through this file and print out the values to the file via the classes from java.io.* package. These are the same classes, that have been used in the export to txt. Based on the requirements of the contracting authority, the comma, as a standard delimiter in csv format, has been replaced with semicolon. The main reason of this change was a fact, that every card, that patient may have, contains comment, which is a text, which may also contain commas. As the semicolon is a much less used character in the sentences, it was decided to use it as a delimiter. Otherwise the report could look confusingly for the user.
 \section{Security and anonymization}
-In GENEPI - the information system there are 3 main levels of an access, according to the visibility of the patient's data.
+In GENEPI - the information system there are 5 main levels of an access, according to the visibility of the patient's data.
 \begin{enumerate}
+\item{Users}
+User role is a basic role that every new user gets from the system by default. This role allows you to acces the homepage and your user profile. Without any further role, the user is not allowed to perform any further actions.
+
 \item{Administrators}
 
 Administrators don't have any access to the patient's data. They are not even able to access the URL to view or export these data.
@@ -195,15 +205,29 @@ Administrators don't have any access to the patient's data. They are not even ab
 
 Researchers have limited access to patient's data - they are not allowed to see sensitive data.
 \item{Doctors}
-Doctors have full access to patient's data
+Doctors have full access to patient's data, they can add new patients and modify their data. Nevertheless after every change, the patient is set as unverified. This means, that those changes weren't checked by an authorized person, can't be with certainty trusted and shouldn't be included to any research. Doctors by default doesn't have authority to verify patients whose data were changed and are set as unverified.
+
+\item{Superdoctors}
+Users with role Superdoctor have the same priviledges as users with role Doctor. Moreover they have the right to verify unverified patients.
 
 \end{enumerate}
-Because of this fact, it was needed to implement some way, how to anonymize the exported data. I have implemented two types of anonymization - volitelnou a povinnou.
+Because of this fact, it was needed to implement some way, how to anonymize the exported data. I have implemented two types of anonymization - optional and manadatory.
 
 Optional anonymization is accessable only for the doctors. Before they commit the export, they can decide if they want to anonymize the exported data. This could be usefull for example in situations, when the doctor needs to provide the data to somebody, who normally doesn't have an access to the system and can't see the sensitive informations at the same time. On the other hand, the doctor still has a possibility to export unanonymized data, which might be usefull for the medical purposes.
 Mandatory anonymization is done automatically, when somebody, who doesn't have sufficient access level wants to export data. This feature will prevent anybody unauthorized from seeing the sensitive data of the patients.
 \section{Custom configurations}
-Customization of the configuration of exported data, was one of the key features of this module.
+Customization of the configuration of exported data, was one of the key features of this module. Due to the fact, that there are several types of users who work with this IS, it's needed to count with that, that the ways how they need to use it differs. Researchers usually do some analysis above some part of the data from the IS, whereas doctors usally need some more complex report about patient's health state and the process of the treatment.
+
+It is obivous, that settings of these configurations will be needed regulary, as it is not expected that users would need to create unique configuration for every single export he'd like to perform. Because of this it was decided that users should have an option to save their adjusted configuration for the later use. Export module for Genepi IS distinguishes two types of saved configurations.
+
+First of them is configuration saved by a user with a Superdoctor role. These configurations may be set as generic. That means that the user chose to let his configuration to propagate through the system, so other users may see and use it.
+
+The other type are user's private configurations. Every user with sufficient access level to access the export view is allowed to create and use his them. These are configurations that were created by a user himself and are available only for him. The other users are not able to use these configurations, nor to see them.
+
+Deleting of configurations is possible as well. Private configurations can be deleted by a user that can see them in his list of private configurations and not by anybody else. 
+
+On the other hand generic configurations are visible to all users in the system, therefore it is needed to determine, if a user who wants to delete some generic configuration, has even the right to perform this action. To delete a generic configuration, the user has to own a Superdoctor role. Then he's allowed to delete any generic configuration created by any other user.
+
 \section{Graphical user interface of the export module}
 On the following pictures I'll explain all components, that are used to controll the export view. During the phase of design and implementation of the view, I had to take into account the fact, that users of this module need a user-friendly interface that could provide them all tools that need to customize exports.
 
