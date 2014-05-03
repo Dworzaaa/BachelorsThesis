@@ -67,22 +67,66 @@ bla
 % \newacronym{FIT}{FIT}{Fakulta informa{\v c}n{\' i}ch technologi{\' i}}
 
 \chapter{Introduction}
-The reporting module, part of the Genepi - the information system, adds an important functionality to this software. Thanks to this module the user will be able to export data saved in the system to sundry formats. This is useful for the doctors that take care of patients with epilepsy, as well as for the researchers that make analysis above the data from this system. In this thesis I'll describe the design and implementation of the reporting module, as well the process of final testing of this product.
+The reporting module, part of the Genepi - the information system, adds an important functionality to this software. Thanks to this module the user will be able to export data saved in the system to sundry formats. This is useful for the doctors that take care of patients with epilepsy, as well as for the researchers that make analysis above the data from this system. The goal was to extend the IS with another functionality without letting the user to notice he's even using any extension. Therefore the reporting module was CITLIVE ZAPRACOVAN DO STAVAJICIHO source code of the Genepi IS, using the same NAVRHOVYCH VZORU A POSTUPU as the resto of the IS.
+
+In this thesis I'll describe the design and implementation of the reporting module, as well the process of final testing of this product.
 
 \chapter{Analysis and design}
-The repoting module, as well as the whole information system, was designed given the requested robustness, accessibility, reliability and the cleanness of the source code. Genepi has a three-tier architecture, uses access according to the roles of the users via Spring Security and thanks to the optimalized data layer it saves the computing resources.
+The repoting module, as well as the whole information system, was designed given the requested robustness, accessibility, reliability and the cleanness of the source code. Genepi has a three-tier architecture driven by Spring MVC module, uses access according to the roles of the users via Spring Security module and thanks to the optimalized data layer that uses Hibernate framework, it saves the computing resources and eases the developers to understand and extend the source code.
 
 Due to the fact, that users, who should work with the exported data, have different levels of access and different requirements on the format of the exported data, there was a need to make the module to be able to anonymize sensitive data as well as to export data to different formats. The contracting authority also requested that the user could choose which data does he want to export. For research purposes is also important to determine, if data that should be exported, contain only patients, whose data were verified by the intrusted user.
 
 \section{Genepi - the information system}
-That the reader could fully understand the functioning of the reporting module, first of all it is needed to introduce the information system that it extends. Genepi - the information system was being created within the subjects BI-SP1 and BI-SP2 on the Czech Technical University, Faculty of Information Technologies in the school year 2012/2013 as a student's project. It should replace the original information system that was used in the Faculty Hospital Motol in Prague for maintaining patients in epileptosurgical programme. The main reasons for replacing the original system was a fact, that it didn't comply with the current requirements of the medics, contained bugs and its design wasn't optimal. Genepi IS is being developed in the java programming language, using frameworks Spring 3 and Hibernate 4.2. Front end part is realized via JSP, using HTLM5, JavaScript and CSS. Libraries that were used to ease the programming of the front end were Twitter Bootstrap and jQuery. As a database has been chosen MySQL 5.5 and as an application server Apache Tomcat 7. All of the used software and libraries are distributed under some kind of free license. Genepi is a bilingual software due to the expected deployment in the Miami Children's hospital in Florida, the United States of America. Languages that are currently supported, are czech and english, nevertheless thanks to the suitably implemented localization it is easy to extend the application and add any other language. During the whole period of the programming of the system, the team consulted the approach often  and regularly with contracting authority, to fully meet the needs of the medics.
+That the reader could fully understand the functioning of the reporting module, first of all it is needed to introduce the information system that it extends. Genepi - the information system was being created within the subjects BI-SP1 and BI-SP2 on the Czech Technical University, Faculty of Information Technologies in the school year 2012/2013 as a student's project. It should replace the original information system that was used in the Faculty Hospital Motol in Prague for maintaining patients in epileptosurgical programme. The main reasons for replacing the original information system was a fact, that it didn't comply with the current requirements of the medics, contained bugs and its design wasn't optimal. Genepi IS is being developed in the java programming language, using frameworks Spring 3 and Hibernate 4.2. Front end part is realized via JSP, using HTLM5, JavaScript and CSS. Libraries that were used to ease the programming of the front end were Twitter Bootstrap and jQuery. As a database has been chosen MySQL 5.5 and as an application server Apache Tomcat 7. All of the used software and libraries are distributed under some kind of free license. Genepi IS is a bilingual software due to the expected deployment in the Miami Children's hospital in Florida, the United States of America. Languages that are currently supported, are czech and english, nevertheless thanks to the suitably implemented localization it is easy to extend the application and add any other language. During the whole period of the programming of the system, the team consulted the approach often  and regularly with contracting authority, to fully meet the needs of the medics.
+
+The frameworks that were used to implement the backe end are: 
+\begin{enumerate}
+
+\item{Spring MVC}
+
+BLABLABLA PAR SLOV OBECNE O HTML + k cemu se konkretne pouziva v Genepi
+BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA 
+\item{Spring Security}
+
+BLABLABLA PAR SLOV OBECNE O HTML + k cemu se konkretne pouziva v Genepi
+BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA 
+\item{Spring Hibernate}
+
+BLABLABLA PAR SLOV OBECNE O HTML + k cemu se konkretne pouziva v Genepi
+BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA 
+
+\end{enumerate}
+
+
+Used front end technologies are: 
+\begin{enumerate}
+
+\item{HTML5}
+
+BLABLABLA PAR SLOV OBECNE O HTML + k cemu se konkretne pouziva v Genepi
+BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA 
+\item{JavaScript}
+
+BLABLABLA PAR SLOV OBECNE O JAVASCRIPTU + k cemu se konkretne pouziva v Genepi
+BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA 
+\item{CSS}
+
+BLABLABLA PAR SLOV OBECNE O CSS + k cemu se konkretne pouziva v Genepi
+BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA 
+\item{Twitter Bootstrap}
+
+Twitter Bootstrap is the most popular front-end framework for developing responsive, mobile first projects on the web. CITOVAT http://getbootstrap.com/. It is build with HTML, CSS and JavaScript. Thanks to this framework it was much easier to create responsive front end with PRIJEMNY  and ergonomic look and feel.
+
+\item{jQuery}
+
+jQuery is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers. With a combination of versatility and extensibility, jQuery has changed the way that millions of people write \cite{JJ92} JavaScript.
+\end{enumerate}
+
 
 \section{Design of the reporting module}
 Architecture of the reporting module doesn't differ from the architecture of the rest of the information system. Thanks to this, I could guarantee the robustness and the security of this module. It has also provided me an easy and elegant way to access the other components in the system.
 
-
-
-In this tree diagram you can see the parts of the IS, that concern the reporting module:
+In this tree diagram you may see the parts of the IS, that concern the reporting module:
 
 	\dirtree{%
 		.1 Backend.
@@ -112,48 +156,38 @@ In this tree diagram you can see the parts of the IS, that concern the reporting
 
 
 \subsection{Design of the back end part}
-Back end part of the reporting module was designed to follow the three-tier architecture of the rest of the system. Thus the classes that this modul uses, are devided into three different packages. Every package contains classes that belong to the same tier. These packages are called Presentation layer, Data layer and Business Layer.
+Back end part of the reporting module was designed to follow the three-tier architecture of the rest of the system. Thus the classes that this modul uses, are devided into three different packages. Every package contains classes that belong to the same tier. These packages are called Presentation layer, Business layer and Data layer. 
 
 \subsubsection{Presentation layer}
-In the presentation layer there is a controller - a Spring MVC component that calls function according to the  HTML request and its URL that is mapped to a particular function. This function executes simple operations such as verification of passed parameters and calls to the other layers. The results of the functions from other layers may be saved to a org.springframework.ui.Model object and passed to front end. This layer never executes any more complicated actions, as those should be done within the business layer. Functions of a controller usually return the name of a view that should be displayed to a user.
+In the presentation layer there is a controller - a Spring MVC component that calls function according to the HTML request and its URL that is mapped to a particular function. This function executes simple operations such as verification of passed parameters and calls to the other layers. The results of the functions from other layers may be saved to a org.springframework.ui.Model object and passed to front end. This layer never executes any more complicated actions, as those should be done within the Business layer nor doesn't access the database as this should be done within the Data layer. Functions of a controller usually return the name of a view - a .jsp file - that should be displayed to a user.
 \subsubsection{Business layer}
-There are three packages in in this tier - concretly those are service, serviceImpl and VO. Service contains interfaces whereas in serviceImpl are contain classes that implement those interfaces from service package. It is analogical as in the data tier which I will describe further in the next paragraph.
-In serviceImpl classes there is usally implemented some more complicated logic, that shouldn't be implemented within persistation layer, like adjusting of VOs, sorting of lists of objects under some conditions and many other actions.
-The third package - VO - contains classes, that are used to transform classes from a form in which the data come from the database - in enitity classes - to a form, that is more propriate for work within business tier.
+There are three packages in in this tier - concretly those are service, serviceImpl and VO. 
+
+Service contains interfaces whereas serviceImpl contains classes that implement those interfaces from service package. It is analogical as in the data tier which I will describe in great details in the next paragraph.
+
+In serviceImpl classes there is usally implemented some more complicated logic, that shouldn't be implemented within Presentation layer, like adjusting of VOs, sorting of lists of objects under some conditions and many other actions.
+
+The third package - VO - contains classes, that are used to transform classes from a form in which the data come from the database - in the enitity classes - to a form, that is more propriate for work within Business tier.
 \subsubsection{Data layer}
 This layer contains three packages - DAO, DAOImpl and entity. In the DAO package, there are interfaces of the data access objects, in DAOImpl are the classes that implement the interfaces from DAO package and finally in entity package, we can find the entity classes.
+
 In DAOImpl classes you can find the functions, that are used to access the database and to get some data from it. There is a direct use of hibernate functions or queries in HQL.
-In entity classes is described, how the structures of the tables in the database look like. Every entity contains a property for every single column of the table. The type of this variable must match the type of the column of the table. Every property has to have a getter and a setter as well. Thanks to anotations from javax.* and org.hibernate.validator.constrains.* it is possible to check the requirements for attributes of the input that should be saved to the database, ie. minimal or maximal size, regexp pattern or if the input may be blank. Very important is hibernate anotation @Column, as it describes the mapping of the property to the certain table in the database.
+
+In entity classes is described, how the structures of the tables in the database look like. Every entity contains a property for every single column of the table. The type of this variable must match the type of the column of the table. If these conditions wouldn't be satisfied, the DOTAZ NAD DATABAZI would fail and the AS would print out NEJAKA HIBERNATI EXCEPTION.
+
+Every property has to have a getter and a setter as well. Thanks to anotations from javax.* and org.hibernate.validator.constrains.* it is possible to check the requirements for attributes of the input that should be saved to the database, ie. minimal or maximal size, regexp pattern or if the input may be blank or NULL.
+
+Mandatory is also a hibernate anotation @Column, as it describes the mapping of the property to the certain table in the database.
 
 I would like to point out the generic GenericDAO and GenericDAOImpl classes that have been implemented.
-These are abstract classes that were implemented to ease the process of programming of the other DAO and DAOImpl classes. In the GenericDAOImpl class there are implemented the most used methods, that may be used by any entity such as save, delete, getCount, getCountOfUnhidden, findByID and many other. The other DAO and DAOImpl methods extend these generic classes so then it wasn't needed to implement these basic functions to every single class and the programmer had to programme only those functions, that were unique for that certain class.
+These are abstract classes that were implemented to ease the process of programming of the other DAO and DAOImpl classes.
+
+In the GenericDAOImpl class there are implemented the most used methods, that may be used by any entity such as save, delete, getCount, getCountOfUnhidden, findByID and many other. The GenericDAO class is interface of GenericDAOImpl class, as in the usall in the rest of the project.
+
+The other DAO and DAOImpl methods extend these generic classes so then it wasn't needed to implement these basic functions to every single class and the programmer had to programme only those functions, that were unique for that certain class.
 
 \subsection{Design of the front end part}
 As well as the beck end part, the front end had to follow the style and design of the rest of the system. If I wouldn't do so, the work with reporting module could be confusing for users. On the basis of these facts, it was needed to implement frontend based on the same technologies as the rest of the Genepi IS. Thanks to this approach the UX from work with this module is positive and user accepts reporting module as a casual part of the IS.
-Used technologies are:
-
-\begin{enumerate}
-
-\item{HTML5}
-
-BLABLABLA PAR SLOV OBECNE O HTML + k cemu se konkretne pouziva v Genepi
-BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA 
-\item{JavaScript}
-
-BLABLABLA PAR SLOV OBECNE O JAVASCRIPTU + k cemu se konkretne pouziva v Genepi
-BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA 
-\item{CSS}
-
-BLABLABLA PAR SLOV OBECNE O CSS + k cemu se konkretne pouziva v Genepi
-BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA 
-\item{Twitter Bootstrap}
-
-Twitter Bootstrap is the most popular front-end framework for developing responsive, mobile first projects on the web. CITOVAT http://getbootstrap.com/. It is build with HTML, CSS and JavaScript. Thanks to this framework it was much easier to create responsive front end with nice and ergonomic look and feel.
-
-\item{jQuery}
-
-jQuery is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers. With a combination of versatility and extensibility, jQuery has changed the way that millions of people write \cite{JJ92} JavaScript.
-\end{enumerate}
 
 \chapter{Realisation}
 All that will be described in this chapter is located in the business layer. The standard approach when performing an export is following:
@@ -295,7 +329,9 @@ The goal of my bachelors thesis was to design and implement an exporting module 
 	\item[DAO] Data access object
 	\item[GUI] Graphical user interface
 	\item[HQL] Hibernate query language
+	\item[IS] Information system
 	\item[JSP] Java server page
+	\item[MVC] Model view controller
 	\item[XML] Extensible markup language
 	\item[VO] View object
 \end{description}
@@ -304,10 +340,14 @@ The goal of my bachelors thesis was to design and implement an exporting module 
 \bibliography{ref}
 
 \chapter{Contents of enclosed CD}
-To my bachelors thesis I enclose CD, which contains all important data, that are needed to start your own Apache Tomcat AS, MySQL database and depoloy Genepi IS. It also contains source codes of Genepi IS and libraries that it uses. In the Database directory is also enclosed model for MySQL Workbench, where the reader may see the structure of the database. In the same folder you can also find migration scripts. These are important when migrating from the software that was previously used in FN Motol to Genepi IS. Migration scripts allow you to copy data from previously used database to the databse that is being used by the Genepi IS.
-Thanks to this, the reader should be able to administrate or even modify Genepi IS without any larger problems.
+To my bachelors thesis I enclose a CD, that contains all important data, that are needed to start your own Apache Tomcat AS, MySQL database and depoloy Genepi IS. It also contains source codes of Genepi IS and libraries that it uses. In the Database directory is also enclosed model for MySQL Workbench, where the reader may see the structure of the database. In the same folder you can also find migration scripts. These are important when migrating from the software that was previously used in FN Motol to Genepi IS. Migration scripts allow you to copy data from previously used database to the databse that is being used by the Genepi IS.
+Thanks to this, the reader should be able to administrate or even modify Genepi IS without any larger problems. If the reader would like to use enclosed Apache Tomcat AS and/or MySQL database, he has to agree and follow the licence agreements that are enclosed in the same directories as the software, that is being distributed under them
 
-Another content of enclosed CD is text directory, that contains this this theis in pdf and ps format and readme.txt file, where is PODROBNEJI described the content of the CD.
+Next important directory is the directory with samples of exported data. This folder contains 14 files with all possible formates of exported data - pdf, docx, xls, csv, txt - all of these formates in both anonymized and unanonymized varieties and both printed to as a plain text and formated to a table for pdf and docx.
+
+The reader may also find useful directory that contains deployment packages of the results of the previously mentions projects from the subjects BI-SP1 and BI-SP2. The documentation to these projects is included in that directory.
+
+Another content of enclosed CD is text directory, that contains this this theis in pdf and ps format and readme.txt file, where is in great deatails described the content of the CD.
 
 \begin{figure}
 	\dirtree{%
@@ -333,7 +373,11 @@ Another content of enclosed CD is text directory, that contains this this theis 
 		.7 tags\DTcomment{the directory of templates for jsp pages}.
 		.7 views\DTcomment{the directory of jsp pages}.
 		.3 test\DTcomment{the directory of source codes of unit tests }.
-		.1 text\DTcomment{the thesis text directory}.
+		.1 Previous projects\DTcomment{the direcotry of results of BI-SP1 and BI-SP2}.
+		.2 BI-SP1\DTcomment{the directory of the BI-SP1 project}.
+		.2 BI-SP2\DTcomment{the direcotry of the BI-SP2 project}.
+		.1 Sample Data\DTcomment{the directory that contains samples of exported data}.
+		.1 Text\DTcomment{the thesis text directory}.
 		.2 thesis.pdf\DTcomment{the thesis text in PDF format}.
 		.2 thesis.ps\DTcomment{the thesis text in PS format}.
 	}
