@@ -7,11 +7,12 @@
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Spring MVC web-flow}}{5}{figure.2.1}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Authentication and Authorization flow}}{6}{figure.2.2}
 \addvspace {10pt}
-\contentsline {figure}{\numberline {3.1}{\ignorespaces export activity diagram}}{13}{figure.3.1}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Create configuration activity diagram}}{19}{figure.3.2}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Delete configuration activity diagram}}{20}{figure.3.3}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Loading of a custom configuration}}{20}{figure.3.4}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces export activity diagram}}{12}{figure.3.1}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Create configuration activity diagram}}{18}{figure.3.2}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Delete configuration activity diagram}}{19}{figure.3.3}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Loading and deleting of a custom configuration}}{19}{figure.3.4}
 \contentsline {figure}{\numberline {3.5}{\ignorespaces Selection of format and customization of an export}}{21}{figure.3.5}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Saving of a custom configuration}}{22}{figure.3.6}
 \addvspace {10pt}
 \addvspace {10pt}
 \addvspace {10pt}
