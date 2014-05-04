@@ -399,14 +399,7 @@ of works or by adapting the Work (including translation), and at the same time m
 % 	\if@langczech\frontmatter*\else\frontmatter\fi %cislovani stranek pred prvni kapitolou
 	\frontmatter
 	\thispagestyle{empty}
-	\if@langczech{Sem vlo{\v z}te zad{\' a}n{\' i} Va{\v s}{\' i} pr{\' a}ce.}\else{Extend the results of the team projects BI-SP1 and BI-SP2, where an analysis, a design, and a prototype implementation of the system according to the requirements of the customer was being solved. 
-The subject of the bachelor thesis is to design, implement, and integrate a reporting module for the system. 
-Main functional requirements:
-- ability to customize the reports, 
-- export in standard formates (xls,doc,pdf,txt,csf) according to the user's choice.
-Additional notes: 
-Solve the export module implementation in cooperation with the users of the system. During designing, take into account the roles hierarchy of those users in the system. The thesis supervisor approves the final set of supported formats as well as the export compilation. The important factor for the design is the robustness and the reliability of the implemented module. 
-Test and document all the releases properly (programmer's guide, user guide, etc..).}\fi
+	\if@langczech{Sem vlo{\v z}te zad{\' a}n{\' i} Va{\v s}{\' i} pr{\' a}ce.}\else{Insert here your thesis' task.}\fi
 
 	\pagestyle{plain}
 	\cleardoublepage

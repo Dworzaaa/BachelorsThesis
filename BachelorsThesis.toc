@@ -25,5 +25,6 @@
 \contentsline {section}{\numberline {3.5}Graphical user interface of the reporting module}{19}{section.3.5}
 \contentsline {chapter}{\chapternumberline {4}Testing}{23}{chapter.4}
 \contentsline {chapter}{Conclusion}{25}{chapter*.5}
-\contentsline {appendix}{\chapternumberline {A}Acronyms}{27}{appendix.A}
-\contentsline {appendix}{\chapternumberline {B}Contents of enclosed CD}{29}{appendix.B}
+\contentsline {chapter}{Bibliography}{27}{section*.7}
+\contentsline {appendix}{\chapternumberline {A}Acronyms}{29}{appendix.A}
+\contentsline {appendix}{\chapternumberline {B}Contents of enclosed CD}{31}{appendix.B}

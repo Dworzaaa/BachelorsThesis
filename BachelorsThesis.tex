@@ -142,7 +142,7 @@ JavaServer Pages (JSP) technology enables Web developers and designers to rapidl
 
 \item{Twitter Bootstrap}
 
-Twitter Bootstrap is the most popular front-end framework for developing responsive, mobile first projects on the web. \cite{bootstrap}. It is build with HTML, CSS and JavaScript. Thanks to this framework it was much easier to create responsive front end with PRIJEMNY  and ergonomic look and feel.
+Twitter Bootstrap is the most popular front-end framework for developing responsive, mobile first projects on the web. \cite{bootstrap}. It is build with HTML, CSS and JavaScript. Thanks to this framework it was much easier to create responsive front end with pleasant and ergonomic look and feel.
 
 \item{jQuery}
 
@@ -351,7 +351,7 @@ On the first picture, you can see the interface for loading and deleting of cust
 On the next picture there is displayed a section for export itself. Firstly there is a list of IDs of patients that are prepared for an export. The user may access the patient's overview by clicking his ID. Next it's needed to choose the format for export via several radiobuttons. In the case, that user chooses as a format docx or pdf, a checkbox appears and lets him to choose if exported data should be formated into tables or as a text. If the user has the Doctor role assigned, then he's able to see a combobox, that allows him to let to anonymize exported data.
 
 \begin{figure}[ht]\centering
-\includegraphics[width=0.7\paperwidth]{export}
+\includegraphics[width=0.6\paperwidth]{export}
 		\caption{Selection of format and customization of an export}
 \end{figure}
 
@@ -369,7 +369,7 @@ Testing of the reporting module as well as the GENEPI IS itself was being perfor
 
 As a source code repository was chosen GitHub. Thanks to this, it was easy to collaborate on a development on GENEPI IS, as well as to see the changes in the source code or to revert the changes to previous versions of the code. You may find the GENEPI's public GitHub repository on the URL \verb| https://github.com/Dworzaaa/database-epileptic-patients|.
 
-During the development there was Jenkins CI deployed on the development server. In a nutshell Jenkins CI is the leading open-source continuous integration server. Built with Java, it provides 922 plugins to support building and testing virtually any project. \cite{http://jenkins-ci.org/content/about-jenkins-ci}. I find this tool very useful as it was regulary downloading the whole application from the GitHub repository, building it and deploying to our development server, that Mr. Ježdík kindly provided us. Thanks to this, the process making any new changes, features or fixes and following process of testing them, become really smooth and literally a matter of one click. Jenkins CI is also used to perform automatized test before every deployment to make sure that newly added features didn't have any bad influence on the rest of the existing code.
+During the development there was Jenkins CI deployed on the development server. In a nutshell Jenkins CI is the leading open-source continuous integration server. Built with Java, it provides 922 plugins to support building and testing virtually any project. \cite{jenkins}. I find this tool very useful as it was regulary downloading the whole application from the GitHub repository, building it and deploying to our development server, that Mr. Ježdík kindly provided us. Thanks to this, the process making any new changes, features or fixes and following process of testing them, become really smooth and literally a matter of one click. Jenkins CI is also used to perform automatized test before every deployment to make sure that newly added features didn't have any bad influence on the rest of the existing code.
 
 \begin{conclusion}
 The goal of my bachelor's thesis was to design and implement a reporting module for GENEPI IS. This extension should be robust, reliable, secure with user-friendly GUI.
@@ -384,7 +384,7 @@ These all were the reasons why in the end it is possible to execute export to 14
 
 To sum up I must say, that I'm really satisfied with the software I've created on the basis of the requests of the doctors from the Faculty Hospital Motol in Prague. I belive that it will serve doctors and researchers well and make their work and research much easier. This all should lead to ZLEPSENI the treatment of the patients with epilepsy.
 
-I feel really proud, that VYSLEDEK of my bachelor's thesis will be deployed in the biggest hospital in the Czech Republic and will be there used to help real patients. I also belive that that my work will have it's PODIL on helping the mankind to understand such and ZAKERNA CHOROBA which epilepsy is and maybe to even save somebody's life.
+I feel really proud, that result of my bachelor's thesis will be deployed in the biggest hospital in the Czech Republic and will be there used to help real patients. I also belive that that my work will have its share on helping the mankind to understand such as insidious disease which epilepsy is and maybe even to save somebody's life.
 
 \end{conclusion}
 
@@ -408,9 +408,6 @@ I feel really proud, that VYSLEDEK of my bachelor's thesis will be deployed in t
 	\item[XML] Extensible Markup Language
 	\item[VO] View Object
 \end{description}
-
-\bibliographystyle{iso690.bst}
-\bibliography{ref}
 
 \chapter{Contents of enclosed CD}
 To my bachelors thesis I enclose a CD, that contains all important data, that are needed to start your own Apache Tomcat AS, MySQL database and depoloy GENEPI IS. It also contains source codes of GENEPI IS and libraries that it uses. In the Database directory is also enclosed model for MySQL Workbench, where the reader may see the structure of the database. In the same folder you can also find migration scripts. These are important when migrating from the information system that was previously used in the Faculty Hospital Motol to GENEPI IS. Migration scripts allow you to copy data from previously used database to the databse that is being used by the GENEPI IS.

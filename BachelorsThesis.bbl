@@ -1,0 +1,67 @@
+\begin{thebibliography}{10}
+\providecommand{\biburl}[1]{\url{#1}}
+\providecommand{\urlprefix}{Dostupn{\' e} z: }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+\providecommand{\selectlanguage}[1]{\relax}
+\providecommand{\eprint}[2][]{\biburl{#2}}
+
+\bibitem{apache}
+Apache Software Foundation: \emph{Apache Tomcat Home}. [cit. 2014-05-04].
+\urlprefix\biburl{http://tomcat.apache.org}
+
+\bibitem{jenkins}
+Jenkins CI Community: \emph{About Jenkins CI}. [cit. 2014-05-04].
+\urlprefix\biburl{http://jenkins-ci.org/content/about-jenkins-ci}
+
+\bibitem{jQuery}
+jQuery team: \emph{What is jQuery}. [cit. 2014-05-04].
+\urlprefix\biburl{https://jquery.com}
+
+\bibitem{javascript}
+Mozilla Foundation: \emph{JavaScript}. [cit. 2014-05-04].
+\urlprefix\biburl{https://developer.mozilla.org/en-US/docs/Web/JavaScript}
+
+\bibitem{java}
+Oracle corporation: \emph{About Java}. [cit. 2014-05-04].
+\urlprefix\biburl{http://www.java.com/en/about}
+
+\bibitem{jsp}
+Oracle corporation: \emph{JavaServer Pages Technology}. [cit. 2014-05-04].
+\urlprefix\biburl{http://www.oracle.com/technetwork/java/javaee/jsp/index.html}
+
+\bibitem{mysql}
+Oracle corporation: \emph{MySQL 5.5 Reference Manual}. [cit. 2014-05-04].
+\urlprefix\biburl{http://dev.mysql.com/doc/refman/5.5/en/introduction.html}
+
+\bibitem{hibernate}
+Red Hat: \emph{Hibernate Community Documentation}. [cit. 2014-05-04].
+\urlprefix\biburl{http://docs.jboss.org/hibernate/orm/4.2/quickstart/en-US/html/pr01.html}
+
+\bibitem{spring}
+SpringSource: \emph{Spring Framework Introduction}. [cit. 2014-05-04].
+\urlprefix\biburl{http://projects.spring.io/spring-framework}
+
+\bibitem{springsecurity}
+SpringSource: \emph{Spring Security Home}. [cit. 2014-05-04].
+\urlprefix\biburl{http://projects.spring.io/spring-security}
+
+\bibitem{springmvc}
+SpringSource: \emph{Web MVC framework Introduction}. [cit. 2014-05-04].
+\urlprefix\biburl{http://docs.spring.io/spring-framework/docs/2.0.x/reference/mvc.html}
+
+\bibitem{bootstrap}
+Twitter, Inc.: \emph{Twitter Bootstrap Home}. [cit. 2014-05-04].
+\urlprefix\biburl{http://getbootstrap.com}
+
+\bibitem{html}
+WWW Consorcium: \emph{w3 wiki FAQs}. [cit. 2014-05-04].
+\urlprefix\biburl{http://www.w3.org/html/wiki/FAQs}
+
+\bibitem{css}
+WWW Consorcium: \emph{What is CSS}. [cit. 2014-05-04].
+\urlprefix\biburl{http://www.w3.org/Style/CSS}
+
+\end{thebibliography}
