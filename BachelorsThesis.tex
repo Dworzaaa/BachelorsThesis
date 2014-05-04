@@ -106,7 +106,7 @@ CITOVAT http://projects.spring.io/spring-framework/
 Spring's Web MVC framework is designed around a DispatcherServlet that dispatches requests to handlers, with configurable handler mappings, view resolution, locale and theme resolution as well as support for upload files. 
 CITOVAT http://docs.spring.io/spring-framework/docs/2.0.x/reference/mvc.html
 
-\begin{figure}[h]\centering
+\begin{figure}[ht]\centering
 \includegraphics[width=0.5\paperwidth]{SpringMVC}
 		\caption{Spring MVC web-flow}
 \end{figure}
@@ -115,7 +115,7 @@ CITOVAT http://docs.spring.io/spring-framework/docs/2.0.x/reference/mvc.html
 
 Spring Security is a powerful and highly customizable authentication and access-control framework. It is the de-facto standard for securing Spring-based applications.
 CITOVAT http://projects.spring.io/spring-security/
-\begin{figure}[h]\centering
+\begin{figure}[ht]\centering
 \includegraphics[width=0.5\paperwidth]{SpringSecurity}
 		\caption{Authentication and Authorization flow}
 \end{figure}
@@ -236,6 +236,7 @@ As well as the beck end part, the front end had to follow the style and design o
 \chapter{Realisation}
 All that will be described in this chapter is located in the business layer. The standard approach when performing an export is following:
 
+\begin{figure}[ht]\centering
 \begin{enumerate}
 \item{ The user chooses in the export view the properties that he wants to include to the exported file, the format, anonymization option and hits the export button }
 \item{ PatientExportPOST method in PatientController class is called and according to the given parameters is calls method to export the data to the right format. It also checks if the data should be anonymized and if the user isn't authorized to see sensitive data, then it sets the anonymize flag to true automatically. All given parameters with all those informations are passed to called export function in the Bussines tier.}
@@ -244,10 +245,11 @@ At first the patient's header is printed out. This header contains information a
 \item{ In the last step is the user redirected to an URL of the newly created file with exported data to download. This file persists on the server and can be repeatedly downloaded. The time that is this file accessable depends on the setting of the server CRON, as this should regulary delete old files in the directory dedicated for export files.}
 
 \end{enumerate}
+\end{figure}
 
 \begin{figure}[h]\centering
 \includegraphics[width=0.7\paperwidth]{exportDiagram}
-		\caption{export activity diagram}\label{fig:logo}
+		\caption{export activity diagram}
 \end{figure}
 
 The goal was to make the whole process secure, reliable and easy to understand for programmer who would read the code, as well as for the user that would use the reporting module. Thanks to the chosen design and implementation approach, were these requirements satisfied.
@@ -287,47 +289,52 @@ After confirming the export form, the state of the treeview is saved to an insta
 \section{Export to the particular formats}
 During the  programming of the classes that procure the logic of the reporting, I was trying to use the fact, that there already exist java libraries that can export data to docx, pdf, xls and csv formats. I also avoided the duplication of the code by transforming data from one format to another. Thanks to these measures, it is much easier to do changes in the code of the classes that handle export itself and it also eases the understanding of the code for anybody, who would read it.
 \subsection{txt}
-Export to the text format is realized by components form java.io.* package. Specifically java.io.FileOutputStream, java.io.OutputStreamWriter and java.io.BufferedWriter. Output is encoded to UTF-8 format. Every property is printed out to a new line, sections are delimited by dash lines, star lines or empty lines.
+Export to the text format is realized by components form java.io.* package. Specifically java.io.FileOutputStream, java.io.OutputStreamWriter and java.io.BufferedWriter. Output is encoded to the UTF-8 format. Every property is printed out to a new line, sections are delimited by dash lines, star lines or empty lines.
 \subsection{docx}
 Export to the docx format was not as easy as to the txt, so I decided to look up suitable libraries, compare them and use that one, that would best suit my needs. After researching the possible solutions I ended up with two libraries - Apache POI and docx4j.
 
-I've chosen to use docx4j because it has provided me more functionalities and clearer API then Apachi POI could. The main problem I had with Apachi POI was the formating of the cells, when I wanted to to format data to the tables. I could hardly adjust the size of the cells and redefine my own styles of headers and text. In docx4j provide really easy and elegant way to solve these issues.
+I've chosen to use docx4j because it has provided me more functionalities and clearer API then Apachi POI could. The main problem I had with Apachi POI was the formating of the cells, when I wanted to to format data to the tables. I could hardly adjust the size of the cells and redefine my own styles of headers and text. Docx4j provided me a really easy and elegant way to solve these issues.
 \subsection{xls}
-As well as for the docx format, I used that there already were programmed libraries for export to xls.
-I've chosen to use Apache POI library, as this library provides me anything I could need to export data to  a xls file, such as merged cells, creating of new lists, .
+As well as for the docx format, I used the fact that there already were programmed libraries for export to xls.
+I've chosen to use Apache POI library, as this library provides me anything I could need to export data to an xls file, such as merged cells, creating of new lists and changing the background color of the cells.
 \subsection{pdf}
-There are of course java libraries that provide you some way to export data to pdf as well, nevertheless I've chosen different approach. While I already had implemented the export to docx, I've chosen not to implement export to pdf, but to create file with data exported to docx and using the classes form apache.poi.xwpf.converter.* package convert this file to pdf. Thanks to this approach I didn't duplicate the code because the only logic needed to format and print out the data for export was already implemented in the export to docx. 
+There are of course java libraries that provide you some way to export data to pdf format as well, nevertheless I've chosen different approach. While I already had implemented the export to docx, I've chosen not to implement export to pdf, but to create file with data exported to docx and using the classes form apache.poi.xwpf.converter.* package convert this file to pdf. Thanks to this approach I didn't duplicate the code because the only logic needed to format and print out the data for export was already implemented in the export to docx. After transforming docx file to pdf, the original docx file is deleted and only the newly created pdf file persists.
 \subsection{csv}
-Before I started to implement the export to csv format, I was also thinking, if I should implement whole logic of export to csv, but then I decided to proceed similarly as in the case of implementation of the export to pdf. Nevertheless in this case I don't use file with data exported to docx, but file created by export to xls, as this format can be easily transformed to csv and vice versa. During the export to csv I create at first xls file with exported data and then I walk through this file and print out the values to the file via the classes from java.io.* package. These are the same classes, that have been used in the export to txt. Based on the requirements of the contracting authority, the comma, as a standard delimiter in csv format, has been replaced with semicolon. The main reason of this change was a fact, that every card, that patient may have, contains comment, which is a text, which may also contain commas. As the semicolon is a much less used character in the sentences, it was decided to use it as a delimiter. Otherwise the report could look confusingly for the user.
+Before I started to implement the export to csv format, I was also thinking, if I should implement whole logic of export to csv, but then I decided to proceed similarly as in the case of implementation of the export to pdf. Nevertheless in this case I don't use file with data exported to docx, but file created by export to xls, as this format can be easily transformed to csv and vice versa. During the export to csv I create at first an xls file with exported data and then I walk through this file and print out the values to the file via the classes from java.io.* package. These are the same classes, that have been used in the export to txt. Based on the requirements of the contracting authority, the comma, as a standard delimiter in csv format, has been replaced with semicolon. The main reason of this change was a fact, that every card, that patient may have, contains comment, which is a text, which may also contain commas. As the semicolon is a much less used character in the sentences, it was decided to use it as a delimiter. Otherwise the report could look confusingly for the user.
 \section{Security and anonymization}
-In Genepi information system there are 5 main levels of an access, according to the visibility of the patient's data.
-\begin{enumerate}
-\item{Users}
-User role is a basic role that every new user gets from the system by default. This role allows you to acces the homepage and your user profile. Without any further role, the user is not allowed to perform any further actions.
+In Genepi IS there are 5 main levels of an access, according to the visibility of the patient's data.
+\begin{figure}[ht]
+	\begin{enumerate}
+	\item{Users}
+	
+	User role is a basic role that every new user gets from the system by default. This role allows you to acces the homepage 	and your user profile. Without any further role, the user is not allowed to perform any further actions.
 
-\item{Administrators}
+	\item{Administrators}
 
-Administrators don't have any access to the patient's data. They are not even able to access the URL to view or export these data.
-\item{Researchers}
+	Administrators don't have any access to the patient's data. They are not even able to access the URL to view or export 			these data. They're the only users who may create new users a edit user's roles. They may also edit user's details and change passwords.
+	\item{Researchers}
 
-Researchers have limited access to patient's data - they are not allowed to see sensitive data.
-\item{Doctors}
+	Researchers have limited access to patient's data - they are not allowed to see sensitive data. Nevertheless they are 			still able to see lists of users, with limited options use advanced search and anonymized export data. Researchers are 			not allowed to modify patients's data.
+	\item{Doctors}
 
-Doctors have full access to patient's data, they can add new patients and modify their data. Nevertheless after every change, the patient is set as unverified. This means, that those changes weren't checked by an authorized person, can't be with certainty trusted and shouldn't be included to any research. Doctors by default doesn't have authority to verify patients whose data were changed and are set as unverified.
+	Doctors have full access to patient's data, they are allowed add new patients and modify their data. Nevertheless after every change, the patient is set as unverified. This means, that those changes weren't checked by an authorized person, can't be with certainty trusted and shouldn't be included to any research. Doctors by default doesn't have authority to verify patients whose data were changed and are set as unverified.
 
-\item{Superdoctors}
+	\item{Superdoctors}
 
-Users with role Superdoctor have the same priviledges as users with role Doctor. Moreover they have the right to verify unverified patients.
+	Users with role Superdoctor have the same priviledges as users with role Doctor. Moreover they have the right to verify 		unverified patients.
 
-\end{enumerate}
-Because of this fact, it was needed to implement some way, how to anonymize the exported data. I have implemented two types of anonymization - optional and manadatory.
+	\end{enumerate}
+\end{figure}
+
+Because of this fact, it was needed to implement some way, how to anonymize the exported data. To reporting module I have implemented two types of anonymization - optional and manadatory.
 
 Optional anonymization is accessable for doctors and superdoctors only. Before they commit the export, they can decide if they want to anonymize the exported data. This could be usefull for example in situations, when the doctor needs to provide the data to somebody, who normally doesn't have an access to the system and can't see the sensitive informations at the same time. On the other hand, the doctor still has a possibility to export unanonymized data, which might be usefull for the medical purposes.
-Mandatory anonymization is done automatically, when somebody, who doesn't have sufficient access level wants to export data. This feature will prevent anybody unauthorized from seeing the sensitive data of the patients. Anonymized data will be mostlyu used by researchers, who make analysis upon the data and don't need to know the names and addresses of patients, because they can distinguis them according to their IDs, which is a mandatory property that is printed out for every patient in every export.
+
+Mandatory anonymization is done automatically, when somebody, who doesn't have sufficient access level, wants to export data. This feature will prevent anybody unauthorized from seeing the sensitive data of the patients. Anonymized data will be mostly used by researchers, who make analysis upon the data and don't need to know the names and addresses of patients, because they can distinguish them according to their IDs, which is a mandatory property that is printed out for every patient in every export.
 \section{Custom configurations}
 Customization of the configuration of exported data, was one of the key features of this module. Due to the fact, that there are several types of users who work with this IS, it's needed to count with that, that the ways how they need to use it differs. Researchers usually do some analysis above some part of the data from the IS, whereas doctors usally need some more complex report about patient's health state and the process of the treatment.
 
-It is obivous, that settings of these configurations will be needed regulary, as it is not expected that users would need to create unique configuration for every single export he'd like to perform. Because of this, it was decided that users should have an option to save their adjusted configuration for a later use. Export module for Genepi IS distinguishes two types of saved configurations.
+It is obivous, that settings of these configurations will be needed regulary, as it is not expected that users would need to create unique configuration for every single export he'd like to perform. Because of this, it was decided that users should have an option to save their adjusted configuration for a later use. Reporting module for Genepi IS distinguishes two types of saved configurations.
 
 First of them is configuration saved by a user with the Superdoctor role. This configuration may be set as generic. That means that the user chose to let his configuration to propagate through the system, so other users may see and use it.
 
@@ -337,27 +344,45 @@ Deleting of configurations is possible as well. Private configurations can be de
 
 On the other hand generic configurations are visible to all users in the system, therefore it is needed to determine, if a user who wants to delete some generic configuration, has even the right to perform this action. To delete a generic configuration, the user has to own a Superdoctor role. Then he's allowed to delete any generic configuration created by any other user. If user doens't have the Superdoctor role, then the delete button for generic configurations is not even displayed to this user in the export view.
 On the following pictures you can see the activity diagram of saving and then deleting of a configuration from the point of view of the user.
-\begin{figure}\centering
+\begin{figure}[ht]\centering
 \includegraphics[width=0.7\paperwidth]{createConfigurationDiagram}
-		\caption{create configuration activity diagram}
+		\caption{Create configuration activity diagram}
 \end{figure}
 
-\begin{figure}\centering
-\includegraphics[width=0.7\paperwidth]{deleteConfigurationDiagram}
-		\caption{delete configuration activity diagram}
+\begin{figure}[ht]\centering
+\includegraphics[width=0.8\paperwidth]{deleteConfigurationDiagram}
+		\caption{Delete configuration activity diagram}
 \end{figure}
 
 
 
-\section{Graphical user interface of the export module}
-On the following pictures I'll explain all components, that are used to controll the export view. During the phase of design and implementation of the view, I had to take into account the fact, that users of this module need a user-friendly interface that could provide them all tools that need to customize exports.
+\section{Graphical user interface of the reporting module}
+On the following pictures I'll explain all components, that are used to controll the export view. During the phase of design and implementation of the view, I had to take into account the fact, that users of this module need a user-friendly interface that could provide them all tools that they could need to customize exports.
 
 On the first picture, you can see the interface for loading and deleting of custom configurations. In the first row, there is a combobox with generic custom configurations which the user may load or even delete, if he's a creator of this configuration.
 
-On the next picture there is displayed a section for export itself. Firstly there is a list of IDs of patients that are prepared for an export. The user may access the patient's overview by clicking to his ID. Next it's needed to choose the format for export via several radiobuttons. In the case, that user chooses as a format docx or pdf, the NEJAKA KOMPONENTA appears and lets him to choose if exported data should be formated into tables or as a text. If the user has a doctor role assigned, then he's able to see a combobox, that allows him to anonymize exported data.
+\begin{figure}[ht]\centering
+\includegraphics[width=0.8\paperwidth]{load}
+		\caption{Loading and deleting of a custom configuration}
+\end{figure}
+
+On the next picture there is displayed a section for export itself. Firstly there is a list of IDs of patients that are prepared for an export. The user may access the patient's overview by clicking his ID. Next it's needed to choose the format for export via several radiobuttons. In the case, that user chooses as a format docx or pdf, a checkbox appears and lets him to choose if exported data should be formated into tables or as a text. If the user has the Doctor role assigned, then he's able to see a combobox, that allows him to let to anonymize exported data.
+
+\begin{figure}[ht]\centering
+\includegraphics[width=0.8\paperwidth]{export}
+		\caption{Selection of format and customization of an export}
+\end{figure}
+
+On the last picture you can see the interface for saving custom configurations. There is a textfield for naming the configuration and if the user has the Superdoctor role, then he may check the checkbox to make the configuration generic.
+
+
+\begin{figure}[ht]\centering
+\includegraphics[width=0.8\paperwidth]{create}
+		\caption{Creating of a custom configuration}
+\end{figure}
 
 \chapter{Testing}
-Testing of the export module as well as the Genepi IS itself was being performed during the development by the developers themselves and by a member of the team who has held the position of a tester. After key  functionalities were implemented, Ing. Jezdik Ph.D got the access to the system and tested it on usual use cases. He of course had many change requests that could enbetter the application or found bugs that should be fixed. Nowadays the Genepi IS with export module should be deployed on produciton servers in the hospital and fully NAHRADIT STAVAJICI applicaiton. As in most of the cases from commercial area, it is awaited, that users will also have some change requests. But those are expected to be minor change requests, mostly on a front end and should be implemented within a few mandays.
+Testing of the reporting module as well as the Genepi IS itself was being performed during the development by the developers themselves and by a member of the team who has held the position of a tester. After key  functionalities were implemented, Ing. Jezdik Ph.D got the access to the system and tested it on usual use cases. He of course had many change requests that could enbetter the application or found bugs that should be fixed. Nowadays the Genepi IS with reporting module should be deployed on produciton servers in the hospital and fully NAHRADIT STAVAJICI applicaiton. As in most of the cases from commercial area, it is awaited, that users will also have some change requests. But those are expected to be minor change requests, mostly on a front end and should be implemented within a few mandays.
 \begin{conclusion}
 The goal of my bachelors thesis was to design and implement an exporting module for Genepi IS. This extension should be robust, reliable, secure with user-friendly GUI. 
 \end{conclusion}
