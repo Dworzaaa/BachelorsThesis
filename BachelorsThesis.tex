@@ -34,25 +34,24 @@
 \author{Martin Dvořáček} %author's name without academic degrees
 \authorWithDegrees{Martin Dvořáček} %author's name with academic degrees
 \supervisor{Ing. Petr Ježdík Ph.D.}
-\acknowledgements{This thesis has benefited greatly from the support of many people, some of whom
-I would sincerely like to thank here.
+\acknowledgements{This thesis has benefited greatly from the support of many people, some of whom I would sincerely like to thank here.
 
-To begin with, I am deeply grateful for the support and guidance of Mr. Ježdík with whom I have a possibility to cooperate for past two years. Thanks to him, I could work on such an interesting topic as implementation of an information system for a the biggest hospital in the Czech Republic.
+To begin with, I am deeply grateful for the support and guidance of Mr. Ježdík with whom I have a possibility to cooperate for past two years. Thanks to him, I could work on such an interesting topic as an implementation of an information system for a the biggest hospital in the Czech Republic.
 
 Also, I owe special thanks to all my classmates that have somehow participated in the process of development of the Genepi IS.
 
 Finally, but first in my heart, my parents and my brother are due my deep gratitude for their continued moral and financial support throughout my studies, the former being of much greater importance. The broad education that I was able to enjoy while growing up has proven invaluable.
 }
-\abstractEN{The goal of this thesis was to implement an export module to Genepi IS.
+\abstractEN{The goal of this thesis was to implement a reporting module to Genepi IS.
 Thanks to this module it is possible to export data stored in the system to varied formats according to the user's choice. User may also adjust the range of exported data, according to his needs. Key requirements were robustness, reliability and security.
 }
-\abstractCS{Cílem této práce byla implementace exportovacího modulu do Genepi IS.
+\abstractCS{Cílem této práce byla implementace reportovacího modulu do Genepi IS.
 Díky tomuto modulu je možné exportovat data uložená v systému do rozličných formátů na základě výběru uživatele. Uživatel také může upravit rozsah exportovaných dat na základě svých potřeb. Mezi klíčové požadavky patřila robustnost, spolehlivost a bezpečnost.
 }
 \placeForDeclarationOfAuthenticity{Prague}
 \keywordsCS
 {
-export dat
+export dat, přístup na základě uživatelských rolí, 
 }
 \keywordsEN
 {
@@ -67,7 +66,7 @@ bla
 % \newacronym{FIT}{FIT}{Fakulta informa{\v c}n{\' i}ch technologi{\' i}}
 
 \chapter{Introduction}
-The reporting module, part of the Genepi - the information system, adds an important functionality to this software. Thanks to this module the user will be able to export data saved in the system to sundry formats. This is useful for the doctors that take care of patients with epilepsy, as well as for the researchers that make analysis above the data from this system. The goal was to extend the IS with another functionality without letting the user to notice he's even using any extension. Therefore the reporting module was CITLIVE ZAPRACOVAN DO STAVAJICIHO source code of the Genepi IS, using the same NAVRHOVYCH VZORU A POSTUPU as the resto of the IS.
+The reporting module, part of the Genepi - the information system, adds an important functionality to this software. Thanks to this module the user will be able to export data saved in the system to sundry formats. This is useful for the doctors that take care of patients with epilepsy, as well as for the researchers that make analysis above the data from this system. The goal was to extend the IS with another functionality without letting the user to notice he's even using any extension. Therefore the reporting module was delicately worked in the existing source code of the Genepi IS, using the same design patterns and approaches as the rest of the IS.
 
 In this thesis I'll describe the design and implementation of the reporting module, as well the process of final testing of this product.
 
@@ -77,23 +76,55 @@ The repoting module, as well as the whole information system, was designed given
 Due to the fact, that users, who should work with the exported data, have different levels of access and different requirements on the format of the exported data, there was a need to make the module to be able to anonymize sensitive data as well as to export data to different formats. The contracting authority also requested that the user could choose which data does he want to export. For research purposes is also important to determine, if data that should be exported, contain only patients, whose data were verified by the intrusted user.
 
 \section{Genepi - the information system}
-That the reader could fully understand the functioning of the reporting module, first of all it is needed to introduce the information system that it extends. Genepi - the information system was being created within the subjects BI-SP1 and BI-SP2 on the Czech Technical University, Faculty of Information Technologies in the school year 2012/2013 as a student's project. It should replace the original information system that was used in the Faculty Hospital Motol in Prague for maintaining patients in epileptosurgical programme. The main reasons for replacing the original information system was a fact, that it didn't comply with the current requirements of the medics, contained bugs and its design wasn't optimal. Genepi IS is being developed in the java programming language, using frameworks Spring 3 and Hibernate 4.2. Front end part is realized via JSP, using HTLM5, JavaScript and CSS. Libraries that were used to ease the programming of the front end were Twitter Bootstrap and jQuery. As a database has been chosen MySQL 5.5 and as an application server Apache Tomcat 7. All of the used software and libraries are distributed under some kind of free license. Genepi IS is a bilingual software due to the expected deployment in the Miami Children's hospital in Florida, the United States of America. Languages that are currently supported, are czech and english, nevertheless thanks to the suitably implemented localization it is easy to extend the application and add any other language. During the whole period of the programming of the system, the team consulted the approach often  and regularly with contracting authority, to fully meet the needs of the medics.
+That the reader could fully understand the functioning of the reporting module, first of all it is needed to introduce the information system that it extends. Genepi - the information system was being created within the subjects BI-SP1 and BI-SP2 on the Czech Technical University, Faculty of Information Technologies in the school year 2012/2013 as a student's project. It should replace the original information system that was used in the Faculty Hospital Motol in Prague for maintaining patients in epileptosurgical programme. The main reasons for replacing the original information system was a fact, that it didn't comply with the current requirements of the medics, contained bugs and its design wasn't optimal. Genepi IS is being developed in the java programming language, using frameworks Spring 4.0.2 and Hibernate 4.3.4. Front end part is realized via JSP, using HTLM5, JavaScript and CSS. Libraries that were used to ease the programming of the front end were Twitter Bootstrap 3.3.1 and jQuery 2.1.0. As a database has been chosen MySQL 5.5 and as an application server Apache Tomcat 7. All of the used software and libraries are distributed under some kind of free license. Genepi IS is a bilingual software due to the expected deployment in the Miami Children's hospital in Florida, the United States of America. Languages that are currently supported, are czech and english, nevertheless thanks to the suitably implemented localization it is easy to extend the application and add any other language. During the whole period of the programming of the system, the team consulted the approach often  and regularly with contracting authority, to fully meet the needs of the medics.
 
 The frameworks that were used to implement the backe end are: 
 \begin{enumerate}
 
+\item{Java 7}
+Java is the foundation for virtually every type of networked application and is the global standard for developing and delivering embedded and mobile applications, games, Web-based content, and enterprise software. Java is designed to enable development of portable, high-performance applications for the widest range of computing platforms possible. By making applications available across heterogeneous environments, businesses can provide more services and boost end-user productivity, communication, and collaboration—and dramatically reduce the cost of ownership of both enterprise and consumer applications. 
+CITOVAT http://www.java.com/en/about/
+
+\item{Apache Tomcat application server}
+
+Apache Tomcat is an open source software implementation of the Java Servlet and JavaServer Pages technologies. Apache Tomcat is developed in an open and participatory environment and released under the Apache License version 2. Apache Tomcat powers numerous large-scale, mission-critical web applications across a diverse range of industries and organizations.
+
+CITOVAT http://tomcat.apache.org/
+
+\item{MySQL Community Server}
+
+The MySQL software delivers a very fast, multi-threaded, multi-user, and robust SQL database server. MySQL Server is intended for mission-critical, heavy-load production systems as well as for embedding into mass-deployed software.
+
+CITOVAT http://dev.mysql.com/doc/refman/5.5/en/introduction.html
+
+\item{Spring Framework}
+The Spring Framework provides a comprehensive programming and configuration model for modern Java-based enterprise applications - on any kind of deployment platform. A key element of Spring is infrastructural support at the application level: Spring focuses on the "plumbing" of enterprise applications so that teams can focus on application-level business logic, without unnecessary ties to specific deployment environments. 
+CITOVAT http://projects.spring.io/spring-framework/ 
+
 \item{Spring MVC}
 
-BLABLABLA PAR SLOV OBECNE O HTML + k cemu se konkretne pouziva v Genepi
-BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA 
+Spring's Web MVC framework is designed around a DispatcherServlet that dispatches requests to handlers, with configurable handler mappings, view resolution, locale and theme resolution as well as support for upload files. 
+CITOVAT http://docs.spring.io/spring-framework/docs/2.0.x/reference/mvc.html
+
+\begin{figure}[h]\centering
+\includegraphics[width=0.5\paperwidth]{SpringMVC}
+		\caption{Spring MVC web-flow}
+\end{figure}
+
 \item{Spring Security}
 
-BLABLABLA PAR SLOV OBECNE O HTML + k cemu se konkretne pouziva v Genepi
-BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA 
-\item{Spring Hibernate}
+Spring Security is a powerful and highly customizable authentication and access-control framework. It is the de-facto standard for securing Spring-based applications.
+CITOVAT http://projects.spring.io/spring-security/
+\begin{figure}[h]\centering
+\includegraphics[width=0.5\paperwidth]{SpringSecurity}
+		\caption{Authentication and Authorization flow}
+\end{figure}
 
-BLABLABLA PAR SLOV OBECNE O HTML + k cemu se konkretne pouziva v Genepi
-BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA 
+\item{Hibernate}
+
+Hibernate takes care of the mapping from Java classes to database tables, and from Java data types to SQL data types. In addition, it provides data query and retrieval facilities. It can significantly reduce development time otherwise spent with manual data handling in SQL and JDBC. However, unlike many other persistence solutions, Hibernate does not hide the power of SQL from you and guarantees that your investment in relational technology and knowledge is as valid as always.
+
+CITOVAT http://docs.jboss.org/hibernate/orm/4.2/quickstart/en-US/html/pr01.html
 
 \end{enumerate}
 
@@ -103,23 +134,36 @@ Used front end technologies are:
 
 \item{HTML5}
 
-BLABLABLA PAR SLOV OBECNE O HTML + k cemu se konkretne pouziva v Genepi
-BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA 
+HTML5 contains powerful capabilities for Web-based applications with more powerful interaction, video support, graphics, more styling effects, and a full set of APIs. HTML5 adapts to any device, whether desktop, mobile, tablet, or television.
+
+CITOVAT http://www.w3.org/html/wiki/FAQs
+
 \item{JavaScript}
 
-BLABLABLA PAR SLOV OBECNE O JAVASCRIPTU + k cemu se konkretne pouziva v Genepi
-BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA 
+JavaScript (often shortened to JS) is a lightweight, interpreted, object-oriented language with first-class functions, most known as the scripting language for Web pages, but used in many non-browser environments as well such as node.js or Apache CouchDB. It is a prototype-based, multi-paradigm scripting language that is dynamic, and supports object-oriented, imperative, and functional programming styles.
+
+CITOVAT https://developer.mozilla.org/en-US/docs/Web/JavaScript
 \item{CSS}
 
-BLABLABLA PAR SLOV OBECNE O CSS + k cemu se konkretne pouziva v Genepi
-BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA BLABLABLA 
+Cascading Style Sheets (CSS) is a simple mechanism for adding style (e.g., fonts, colors, spacing) to Web documents.
+
+CITOVAT http://www.w3.org/Style/CSS/
+
+\item{JSP}
+
+JavaServer Pages (JSP) technology enables Web developers and designers to rapidly develop and easily maintain, information-rich, dynamic Web pages that leverage existing business systems. As part of the Java technology family, JSP technology enables rapid development of Web-based applications that are platform independent. JSP technology separates the user interface from content generation, enabling designers to change the overall page layout without altering the underlying dynamic content.
+
+CITOVAT http://www.oracle.com/technetwork/java/javaee/jsp/index.html
+
 \item{Twitter Bootstrap}
 
 Twitter Bootstrap is the most popular front-end framework for developing responsive, mobile first projects on the web. CITOVAT http://getbootstrap.com/. It is build with HTML, CSS and JavaScript. Thanks to this framework it was much easier to create responsive front end with PRIJEMNY  and ergonomic look and feel.
 
 \item{jQuery}
 
-jQuery is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers. With a combination of versatility and extensibility, jQuery has changed the way that millions of people write \cite{JJ92} JavaScript.
+jQuery is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers. With a combination of versatility and extensibility, jQuery has changed the way that millions of people write JavaScript.
+\cite{JJ92}
+
 \end{enumerate}
 
 
@@ -173,7 +217,7 @@ This layer contains three packages - DAO, DAOImpl and entity. In the DAO package
 
 In DAOImpl classes you can find the functions, that are used to access the database and to get some data from it. There is a direct use of hibernate functions or queries in HQL.
 
-In entity classes is described, how the structures of the tables in the database look like. Every entity contains a property for every single column of the table. The type of this variable must match the type of the column of the table. If these conditions wouldn't be satisfied, the DOTAZ NAD DATABAZI would fail and the AS would print out NEJAKA HIBERNATI EXCEPTION.
+In entity classes is described, how the structures of the tables in the database look like. Every entity contains a property for every single column of the table. The type of this variable must match the type of the column of the table. If these conditions wouldn't be satisfied, the database query would fail and the AS would throw out org.hibernate.MappingException`.
 
 Every property has to have a getter and a setter as well. Thanks to anotations from javax.* and org.hibernate.validator.constrains.* it is possible to check the requirements for attributes of the input that should be saved to the database, ie. minimal or maximal size, regexp pattern or if the input may be blank or NULL.
 
@@ -195,27 +239,27 @@ All that will be described in this chapter is located in the business layer. The
 \begin{enumerate}
 \item{ The user chooses in the export view the properties that he wants to include to the exported file, the format, anonymization option and hits the export button }
 \item{ PatientExportPOST method in PatientController class is called and according to the given parameters is calls method to export the data to the right format. It also checks if the data should be anonymized and if the user isn't authorized to see sensitive data, then it sets the anonymize flag to true automatically. All given parameters with all those informations are passed to called export function in the Bussines tier.}
-\item{ In this step we've moved from Presentation tier to Business tier, where one of the methods for export to certain format was called. This is the part, where the data is being written to the file itself. The program iterates through all the patient that user wanted to export and gradually prints out their data.}
+\item{ In this step we've moved from Presentation tier to Business tier, where one of the methods for export to certain format was called. This is the part, where the data is being written to the file itself. The program iterates through all the patients that user wanted to export and gradually prints out their data.}
 At first the patient's header is printed out. This header contains information about patient such as his age, gender, age at the beginning of the epilepsy and other important data. It may also contain sensitive data such as his name, address or other contact information.
 \item{ In the last step is the user redirected to an URL of the newly created file with exported data to download. This file persists on the server and can be repeatedly downloaded. The time that is this file accessable depends on the setting of the server CRON, as this should regulary delete old files in the directory dedicated for export files.}
 
 \end{enumerate}
 
-\begin{figure}\centering
-\includegraphics[width=0.5\paperwidth]{exportDiagram}
+\begin{figure}[h]\centering
+\includegraphics[width=0.7\paperwidth]{exportDiagram}
 		\caption{export activity diagram}\label{fig:logo}
 \end{figure}
 
-The goal was to make the whole process secure, reliable and easy to understand for programmer who would read the code, as well as for the user that would use the export module. Thanks to chosen design and implementation approach were these requirements satisfied.
+The goal was to make the whole process secure, reliable and easy to understand for programmer who would read the code, as well as for the user that would use the reporting module. Thanks to the chosen design and implementation approach, were these requirements satisfied.
 \section{Customization of the export}
-There was a strong demand from the contracting authority to create a module that would let the user to customize the report. This is because every patient can have filled in fifteen cards. This means circa 340 properties that can be stored for every single patient. Nevertheless not all of them are needed to be exported in certain situations. Therefore was needed to implement some solution, that would allow user to select only those cards or properties of those cards, that should be exported.
-Due to a high amount of those properties, it was quite challenging to create solution, that would meet the requirements and will be user-friendly at the same time. I've chosen treeview on the fron end and special entity on the back end.
+There was a strong demand from the contracting authority to create a module that would let the user to customize the report. Every patient can have filled in fifteen cards. This means circa 340 properties that can be stored for every single patient. Nevertheless not all of them are needed to be exported in certain situations. Therefore was needed to implement some solution, that would allow user to select only those cards or properties of those cards, that should be exported.
+Due to a high amount of those properties, it was quite challenging to create solution, that would meet the requirements and will be user-friendly at the same time. I've chosen treeview on the front end and special entity on the back end.
 
-On the front end there was implemented a customized treeview, where every item has a checkbox. Patient's cards are represented by the nodes, whereas porperties of these cards can be represented by the leaves of this tree or nodes as well. They may be nodes, if they denote some category that can hold some properties that couldn't exist withou their parent cathegory. By checking and unchecking these items, the user can choose, what all should be involved in the exported data. When unchecking the node, also all leaves of this node are deselected. On the other hand, by selecting even a single leaf from an unselected branch, the parent node is selected as well.
+On the front end there was implemented a customized treeview, where every item has a checkbox. Patient's cards are represented by the nodes, whereas porperties of these cards can be represented by the leaves of this tree or nodes as well. They may be nodes, if they denote some category that can hold some properties that couldn't exist withou their parent category. By checking and unchecking these items, the user can choose, what all should be involved in the exported data. When unchecking the node, also all leaves of this node are deselected. On the other hand, by selecting even a single leaf from an unselected branch, the parent node is selected as well.
 Here I attach a simple example of the treeview I was writting about:
 
 
-
+\begin{figure}[h]
 	\dirtree{%
 		.1 Anamnesis\DTcomment{anamnesis card}.
 		.2 Anamnesis property.
@@ -236,6 +280,7 @@ Here I attach a simple example of the treeview I was writting about:
 		.1 ....
 		.1 Outcome\DTcomment{outcome card}.
 	}
+\end{figure}
 
 After confirming the export form, the state of the treeview is saved to an instance of an entity called ExportParams. This entity has a boolean property for every single value from the treeview in the export form. Thanks to this, I am able to determine, which properties the user wanted to export and which didn't. It gives me another advantage - I can save the current setting of the treeview for a later usage, but I will write about this feature later.
 
@@ -330,7 +375,7 @@ The goal of my bachelors thesis was to design and implement an exporting module 
 	\item[GUI] Graphical user interface
 	\item[HQL] Hibernate query language
 	\item[IS] Information system
-	\item[JSP] Java server page
+	\item[JSP] JavaServer page
 	\item[MVC] Model view controller
 	\item[XML] Extensible markup language
 	\item[VO] View object

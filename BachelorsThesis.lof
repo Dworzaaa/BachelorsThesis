@@ -4,6 +4,8 @@
 \select@language {UKenglish}
 \addvspace {10pt}
 \addvspace {10pt}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Spring MVC web-flow}}{5}{figure.2.1}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Authentication and Authorization flow}}{6}{figure.2.2}
 \addvspace {10pt}
 \contentsline {figure}{\numberline {3.1}{\ignorespaces export activity diagram}}{12}{figure.3.1}
 \contentsline {figure}{\numberline {3.2}{\ignorespaces create configuration activity diagram}}{18}{figure.3.2}
