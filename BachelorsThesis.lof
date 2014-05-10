@@ -5,7 +5,7 @@
 \addvspace {10pt}
 \addvspace {10pt}
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Spring MVC web-flow}}{6}{figure.2.1}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Authentication and Authorization flow}}{6}{figure.2.2}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Authentication and Authorization flow}}{7}{figure.2.2}
 \addvspace {10pt}
 \addvspace {10pt}
 \addvspace {10pt}
@@ -14,7 +14,7 @@
 \contentsline {figure}{\numberline {5.3}{\ignorespaces Delete configuration activity diagram}}{23}{figure.5.3}
 \contentsline {figure}{\numberline {5.4}{\ignorespaces Loading and deleting of a custom configuration}}{24}{figure.5.4}
 \contentsline {figure}{\numberline {5.5}{\ignorespaces Selection of format and customization of an export}}{25}{figure.5.5}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Saving of a custom configuration}}{26}{figure.5.6}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Saving a custom configuration}}{26}{figure.5.6}
 \addvspace {10pt}
 \contentsline {figure}{\numberline {6.1}{\ignorespaces Screenshot of an export of all patients to docx}}{28}{figure.6.1}
 \contentsline {figure}{\numberline {6.2}{\ignorespaces Screenshot of an export of all patients to docx}}{28}{figure.6.2}
