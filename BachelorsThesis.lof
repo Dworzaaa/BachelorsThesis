@@ -4,16 +4,24 @@
 \select@language {UKenglish}
 \addvspace {10pt}
 \addvspace {10pt}
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Spring MVC web-flow}}{5}{figure.2.1}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Spring MVC web-flow}}{6}{figure.2.1}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Authentication and Authorization flow}}{6}{figure.2.2}
 \addvspace {10pt}
-\contentsline {figure}{\numberline {3.1}{\ignorespaces export activity diagram}}{12}{figure.3.1}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Create configuration activity diagram}}{18}{figure.3.2}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Delete configuration activity diagram}}{19}{figure.3.3}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Loading and deleting of a custom configuration}}{19}{figure.3.4}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Selection of format and customization of an export}}{21}{figure.3.5}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Saving of a custom configuration}}{22}{figure.3.6}
 \addvspace {10pt}
+\addvspace {10pt}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Export activity diagram}}{16}{figure.5.1}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Create configuration activity diagram}}{22}{figure.5.2}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Delete configuration activity diagram}}{23}{figure.5.3}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Loading and deleting of a custom configuration}}{24}{figure.5.4}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Selection of format and customization of an export}}{25}{figure.5.5}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Saving of a custom configuration}}{26}{figure.5.6}
+\addvspace {10pt}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Screenshot of an export of all patients to docx}}{28}{figure.6.1}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Screenshot of an export of all patients to docx}}{28}{figure.6.2}
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Screenshot of an export of all female patients to txt}}{29}{figure.6.3}
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Screenshot of an export of all patients older then 5 years to xls}}{29}{figure.6.4}
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Screenshot of an export of all patients older then 5 years to xls}}{30}{figure.6.5}
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Example of an analysis from exported data}}{30}{figure.6.6}
 \addvspace {10pt}
 \addvspace {10pt}
 \addvspace {10pt}

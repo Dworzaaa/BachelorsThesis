@@ -1,15 +1,20 @@
 \BOOKMARK [0][-]{chapter.1}{Introduction}{}% 1
-\BOOKMARK [0][-]{chapter.2}{Analysis and design}{}% 2
-\BOOKMARK [1][-]{section.2.1}{GENEPI IS}{chapter.2}% 3
-\BOOKMARK [1][-]{section.2.2}{Design of the reporting module}{chapter.2}% 4
-\BOOKMARK [0][-]{chapter.3}{Realisation}{}% 5
-\BOOKMARK [1][-]{section.3.1}{Customization of the export}{chapter.3}% 6
-\BOOKMARK [1][-]{section.3.2}{Export to the particular formats}{chapter.3}% 7
-\BOOKMARK [1][-]{section.3.3}{Security and anonymization}{chapter.3}% 8
-\BOOKMARK [1][-]{section.3.4}{Custom configurations}{chapter.3}% 9
-\BOOKMARK [1][-]{section.3.5}{Graphical user interface of the reporting module}{chapter.3}% 10
-\BOOKMARK [0][-]{chapter.4}{Testing}{}% 11
-\BOOKMARK [0][-]{chapter*.5}{Conclusion}{}% 12
-\BOOKMARK [0][-]{section*.7}{Bibliography}{}% 13
-\BOOKMARK [0][-]{appendix.A}{Acronyms}{}% 14
-\BOOKMARK [0][-]{appendix.B}{Contents of enclosed CD}{}% 15
+\BOOKMARK [0][-]{chapter.2}{Current status}{}% 2
+\BOOKMARK [1][-]{section.2.1}{Functional Requirements}{chapter.2}% 3
+\BOOKMARK [1][-]{section.2.2}{Non-functional Requirements}{chapter.2}% 4
+\BOOKMARK [1][-]{section.2.3}{Used back end technologies}{chapter.2}% 5
+\BOOKMARK [1][-]{section.2.4}{Used front end technologies}{chapter.2}% 6
+\BOOKMARK [0][-]{chapter.3}{Goals}{}% 7
+\BOOKMARK [0][-]{chapter.4}{Analysis and design}{}% 8
+\BOOKMARK [1][-]{section.4.1}{Design of the reporting module}{chapter.4}% 9
+\BOOKMARK [0][-]{chapter.5}{Realisation}{}% 10
+\BOOKMARK [1][-]{section.5.1}{Customization of the export}{chapter.5}% 11
+\BOOKMARK [1][-]{section.5.2}{Export to the particular formats}{chapter.5}% 12
+\BOOKMARK [1][-]{section.5.3}{Security and anonymization}{chapter.5}% 13
+\BOOKMARK [1][-]{section.5.4}{Custom configurations}{chapter.5}% 14
+\BOOKMARK [1][-]{section.5.5}{Graphical user interface of the reporting module}{chapter.5}% 15
+\BOOKMARK [0][-]{chapter.6}{Testing and Examples}{}% 16
+\BOOKMARK [0][-]{chapter*.5}{Conclusion}{}% 17
+\BOOKMARK [0][-]{section*.7}{Bibliography}{}% 18
+\BOOKMARK [0][-]{appendix.A}{Acronyms}{}% 19
+\BOOKMARK [0][-]{appendix.B}{Contents of enclosed CD}{}% 20
