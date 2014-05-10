@@ -26,8 +26,8 @@
 \contentsline {subsection}{\numberline {5.2.4}pdf}{19}{subsection.5.2.4}
 \contentsline {subsection}{\numberline {5.2.5}csv}{19}{subsection.5.2.5}
 \contentsline {section}{\numberline {5.3}Security and anonymization}{20}{section.5.3}
-\contentsline {section}{\numberline {5.4}Custom configurations}{21}{section.5.4}
-\contentsline {section}{\numberline {5.5}Graphical user interface of the reporting module}{23}{section.5.5}
+\contentsline {section}{\numberline {5.4}Custom configurations}{20}{section.5.4}
+\contentsline {section}{\numberline {5.5}Graphical user interface of the reporting module}{22}{section.5.5}
 \contentsline {chapter}{\chapternumberline {6}Testing and Examples}{27}{chapter.6}
 \contentsline {chapter}{Conclusion}{31}{chapter*.5}
 \contentsline {chapter}{Bibliography}{33}{section*.7}

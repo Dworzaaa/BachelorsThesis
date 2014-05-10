@@ -40,7 +40,7 @@ To begin with, I am deeply grateful for the support and guidance of Mr. Ježdík
 
 Also, I owe special thanks to all my classmates that have somehow participated in the process of development of the GENEPI IS.
 
-Great thanks also belong to Tim Rogers for the proofreading of my thesis.
+Great thanks belong to Tim Rogers for the proofreading of my thesis.
 
 Finally, but first in my heart, my parents and my brother are due my deep gratitude for their continued moral and financial support throughout my studies. The broad education that I was able to enjoy while growing up has proven invaluable.
 }
@@ -71,7 +71,7 @@ The reporting module, as part of the GENEPI - information system, adds an import
 
 GENEPI IS should replace the original information system that was used in the Faculty Hospital Motol in Prague for maintaining patients in its epileptosurgical programme. The main reasons for replacing the original information system was the fact that it didn't comply with the current requirements of the doctors, contained bugs and its design wasn't optimal. Because of the uniqueness of stored data and because of the special requirements of the system itself, there was no free software available that would be suitable and thus it was needed to create custom information system.
 
-I chose to participate in this project, although I knew it would not be easy. The main reasons that led to selection of participation in the development of the GENEPI IS were the facts that it is a software that will be deployed in the production environment to be used by real users and can help to improve the health state of real people. 
+I chose to participate in this project, although I knew it would not be easy. The main reasons that led to selection of participation in the development of the GENEPI IS were the facts that it is a software that will be deployed in the production environment to be used by real users and can help to improve the state of health of real people. 
 
 In the following chapters the reader will become familiar with the GENEPI IS, the process of analysis, design and realisation of the reporting module, as well as with the process of testing and will see a few examples of exports done by the reporting module.
 
@@ -131,19 +131,27 @@ The Spring Framework provides a comprehensive programming and configuration mode
 
 Spring's Web MVC framework is designed around a DispatcherServlet that dispatches requests to handlers, with configurable handler mappings, view resolution, locale and theme resolution as well as support for upload files.\cite{springmvc}
 
-\begin{figure}[ht]\centering
-\includegraphics[width=0.5\paperwidth]{SpringMVC}
-		\caption{Spring MVC web-flow}
+\begin{figure}
+	\centering
+ 	\includegraphics[width=1\textwidth]{pictures/SpringMVC.jpg}
+ 	\caption{Spring MVC web-flow}
+ 	\label{fig:springMVCWebFlow}
 \end{figure}
+
 
 \item{Spring Security}
 
 Spring Security is a powerful and highly customizable authentication and access-control framework. It is the de-facto standard for securing Spring-based applications.\cite{springsecurity}
 
-\begin{figure}[ht]\centering
-\includegraphics[width=0.8\paperwidth]{SpringSecurity}
-		\caption{Authentication and Authorization flow}
+
+\begin{figure}
+	\centering
+ 	\includegraphics[width=1\textwidth]{pictures/SpringSecurity.png}
+ 	\caption{Authentication and Authorization flow}
+ 	\label{fig:springSecurity}
 \end{figure}
+
+
 
 \item{Hibernate}
 
@@ -285,9 +293,11 @@ First the patient's header is printed out. This header contains information abou
 
 \end{enumerate}
 
-\begin{figure}[ht]\centering
-\includegraphics[width=0.6\paperwidth]{exportDiagram}
-		\caption{Export activity diagram}
+\begin{figure}
+	\centering
+ 	\includegraphics[width=1\textwidth]{pictures/exportDiagram.png}
+ 	\caption{Export activity diagram}
+ 	\label{fig:exportDiagram}
 \end{figure}
 
 The goal was to make the whole process secure, reliable and easy to understand for any programmer reading the code, as well as for the user accessing the reporting module. Thanks to the chosen design and implementation approach these requirements were satisfied.
@@ -383,16 +393,20 @@ Deletion of configurations is possible as well. Private configurations can be de
 
 On the other hand generic configurations are visible to all users in the system, therefore it is necessary to determine if a user who wants to delete some generic configuration has even the right to perform this action. To delete a generic configuration the user has to own a Superdoctor role. Then he's allowed to delete any generic configuration created by any other user. If the user doesn't have a Superdoctor role, then the delete button for generic configurations is not even displayed to this user in the export view.
 On the following pictures you can see the activity diagram of saving and then deleting of a configuration from the point of view of the user.
-\begin{figure}[ht]\centering
-\includegraphics[width=0.5\paperwidth]{createConfigurationDiagram}
-		\caption{Create configuration activity diagram}
+
+\begin{figure}
+	\centering
+ 	\includegraphics[width=1\textwidth]{pictures/createConfigurationDiagram.png}
+ 	\caption{Create configuration activity diagram}
+ 	\label{fig:createConfigurationDiagram}
 \end{figure}
 
-\begin{figure}[ht]\centering
-\includegraphics[width=0.5\paperwidth]{deleteConfigurationDiagram}
-		\caption{Delete configuration activity diagram}
+\begin{figure}
+	\centering
+ 	\includegraphics[width=1\textwidth]{pictures/deleteConfigurationDiagram.png}
+ 	\caption{Delete configuration activity diagram}
+ 	\label{fig:deleteConfigurationDiagram}
 \end{figure}
-
 
 
 \section{Graphical user interface of the reporting module}
@@ -400,24 +414,33 @@ In the following pictures I'll explain all the components used to control the ex
 
 In the first picture, you can see the interface for loading and deleting custom configurations. In the first row there is a combobox with generic custom configurations which the user may load or even delete, if he's the creator of this configuration.
 
-\begin{figure}[ht]\centering
-\includegraphics[width=0.6\paperwidth]{load}
-		\caption{Loading and deleting of a custom configuration}
+\begin{figure}
+	\centering
+ 	\includegraphics[width=1\textwidth]{pictures/load.png}
+ 	\caption{Loading and deleting of a custom configuration}
+ 	\label{fig:load}
 \end{figure}
+
 
 In the next picture there is displayed a section for export itself. First a list of IDs of the patients that are prepared for an export. The user may access the patient's overview by clicking his ID. Next it's necessary to choose the format for export via several radiobuttons. In the case that the user chooses as a format docx or pdf, a checkbox appears and allows him to choose if exported data should be formated into tables or as a text. If the user has a Doctor or Superdoctor role assigned, then he's able to see a combobox that allows him to anonymize exported data.
 
-\begin{figure}[ht]\centering
-\includegraphics[width=0.6\paperwidth]{export}
-		\caption{Selection of format and customization of an export}
+\begin{figure}
+	\centering
+ 	\includegraphics[width=1\textwidth]{pictures/export.png}
+ 	\caption{Selection of format and customization of an export}
+ 	\label{fig:export}
 \end{figure}
+
 
 In the last picture you can see the interface for saving custom configurations. There is a textfield for naming the configuration and if the user has a Superdoctor role, then he may check the checkbox to make the configuration generic.
 
-\begin{figure}[ht]\centering
-\includegraphics[width=0.6\paperwidth]{save}
-		\caption{Saving a custom configuration}
+\begin{figure}
+	\centering
+ 	\includegraphics[width=1\textwidth]{pictures/save.png}
+ 	\caption{Saving a custom configuration}
+ 	\label{fig:save}
 \end{figure}
+
 
 \chapter{Testing and Examples}
 
@@ -425,37 +448,47 @@ Testing of the reporting module as well as the GENEPI IS itself was performed du
 
 On the following screenshots the reader can see a few examples of how the export files created by the reporting module look. I also enclose a simple example of an analysis made on the basis of data from GENEPI IS, that were exported into xls. All these examples spring from real data, currently saved in the IS, but they were anonymized of course. You may find these files enclosed on the CD as well.
 
-\begin{figure}[ht]\centering
-\includegraphics[width=0.6\paperwidth]{docxExport_1}
-		\caption{Screenshot of an export of all patients to docx}
+\begin{figure}
+	\centering
+ 	\includegraphics[width=1\textwidth]{pictures/docxExport_1.png}
+ 	\caption{Screenshot of an export of all patients to docx}
+ 	\label{fig:docxExport_1}
 \end{figure}
 
-\begin{figure}[ht]\centering
-\includegraphics[width=0.6\paperwidth]{docxExport_2}
-		\caption{Screenshot of an export of all patients to docx}
+\begin{figure}
+	\centering
+ 	\includegraphics[width=1\textwidth]{pictures/docxExport_2.png}
+ 	\caption{Screenshot of an export of all patients to docx}
+ 	\label{fig:docxExport_2}
+\end{figure}
+
+\begin{figure}
+	\centering
+ 	\includegraphics[width=1\textwidth]{pictures/txtExport.png}
+ 	\caption{Screenshot of an export of all female patients to txt}
+ 	\label{fig:txtExport}
+\end{figure}
+
+\begin{figure}
+	\centering
+ 	\includegraphics[width=1\textwidth]{pictures/xlsExport_1.png}
+ 	\caption{Screenshot of an export of all patients older then 5 years to xls}
+ 	\label{fig:xlsExport_1}
 \end{figure}
 
 
-\begin{figure}[ht]\centering
-\includegraphics[width=0.6\paperwidth]{txtExport}
-		\caption{Screenshot of an export of all female patients to txt}
+\begin{figure}
+	\centering
+ 	\includegraphics[width=1\textwidth]{pictures/xlsExport_2.png}
+ 	\caption{Screenshot of an export of all patients older then 5 years to xls}
+ 	\label{fig:xlsExport_2}
 \end{figure}
 
-
-\begin{figure}[ht]\centering
-\includegraphics[width=0.6\paperwidth]{xlsExport_1}
-		\caption{Screenshot of an export of all patients older then 5 years to xls}
-\end{figure}
-
-
-\begin{figure}[ht]\centering
-\includegraphics[width=0.6\paperwidth]{xlsExport_2}
-		\caption{Screenshot of an export of all patients older then 5 years to xls}
-\end{figure}
-
-\begin{figure}[ht]\centering
-\includegraphics[width=0.5\paperwidth]{chart}
-		\caption{Example of an analysis from exported data}
+\begin{figure}
+	\centering
+ 	\includegraphics[width=1\textwidth]{pictures/chart.png}
+ 	\caption{Example of an analysis from exported data}
+ 	\label{fig:chart}
 \end{figure}
 \begin{conclusion}
 I've created a tool that greatly extends the possibilities that GENEPI IS could provide to doctors and researchers who use it. Without the reporting module GENEPI IS would be only a tool to store and look up informations about patients. But now it becomes a tool, that can provide to users structured and customized reports. Those reports may be used as a source of important information about the patient's state of health and about the process of his treatment through surgery as well as a source of data for analysis and research.
