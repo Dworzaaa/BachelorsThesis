@@ -40,12 +40,12 @@ To begin with, I am deeply grateful for the support and guidance of Mr. Ježdík
 
 Also, I owe special thanks to all my classmates that have somehow participated in the process of development of the GENEPI IS.
 
-Great thanks belong to Tim Rogers for the proofreading of my thesis.
+My sincere gratitude goes to Tim Rogers for the proofreading of my thesis.
 
 Finally, but first in my heart, my parents and my brother are due my deep gratitude for their continued moral and financial support throughout my studies. The broad education that I was able to enjoy while growing up has proven invaluable.
 }
 \abstractEN{
-Epilepsy is a brain disorder that affects approximately 1\% of the population. Of these, approximately 10 \% of the patients suffer from a pharmacoresistant form of epilepsy which can not be treaten by the standard medical procedures. This paper deals with the analysis, design and implementation of a reporting module to GENEPI Information System, which was developed for the Faculty Hospital Motol by the students of FIT ČVUT, and is a key tool for the management of patients, involved in epileptosurgical programme. Currently in the epileptosurgical programme are involved 150 patients, mostly children, and its beginning dates back to 2000. GENEPI IS, and thus the reporting module, is software that was developed from the beginning according to the specific requirements of doctors who use it. Given that it stores unique information, which also may contain sensitive information, the resultant product was developed under special claims. Among those included robustness, reliability and safety aspects.
+Epilepsy is a brain disorder that affects approximately 1\% of the population. Of these, approximately 10 \% of the patients suffer from a pharmacoresistant form of epilepsy which can not be treaten by the standard medical procedures. This paper deals with the analysis, design and implementation of a reporting module to the GENEPI Information System, which was developed for the Faculty Hospital Motol by the students of FIT ČVUT, and is a key tool for the management of patients, involved in epileptosurgical programme. Currently in the epileptosurgical programme are involved 150 patients, mostly children, and its beginning dates back to 2000. GENEPI IS, and thus the reporting module, is software that was developed from the beginning according to the specific requirements of doctors who use it. Given that it stores unique information, which also may contain sensitive information, the resultant product was developed under special claims. Among those included robustness, reliability and safety aspects.
 }
 \abstractCS{Epilepsie je onemocnění mozku, které postihuje přibližně 1\% populace. Z toho přibližně 10\% pacientů trpí farmakorezistentní formou epilepsie, při které se nedají použít standardní léčebné postupy. Tato práce se zabývá analýzou, designem a implementací reportovacího modulu do Informačního Systému GENEPI, který byl vyvíjen na zakázku pro Fakultní Nemocnici Motol studenty FIT ČVUT, a který je klíčovým nástrojem pro správu těchto pacientů zapojených do epilepticko-chirurgického programu. V současné době je do epilepticko-chirurgického programu zapojeno na 150, převážně dětských, pacientů a jeho začátek se datuje do roku 2000. GENEPI IS, a tím pádem i reportovací modul, je software, který byl od začátku vyvíjen na základě specifických požadavků lékařů, kteří jej používají. Vzhledem k tomu, že uchovává unikátní data, která zároveň mohou obsahovat citlivé údaje, tak byly na výsledný produkt při vývoji kladeny zvlášní nároky. Mezi ty patřila robustnost, spolehlivost a především bezpečnost. 
 }
@@ -69,7 +69,7 @@ export of data, access acording to the user roles, data anonymization, reporting
 \chapter{Introduction}
 The reporting module, as part of the GENEPI - information system, adds an important functionality to this software. Thanks to this module the user will be able to export data saved in the system to sundry formats. This is useful for the doctors that take care of patients with epilepsy, as well as for the researchers that make analysis above the data from this system. The goal was to extend the IS with additional functionality without letting the user notice he's even using further extension. Therefore the reporting module was delicately worked into the existing source code of the GENEPI IS, using the same design patterns and approaches as the rest of the IS.
 
-GENEPI IS should replace the original information system that was used in the Faculty Hospital Motol in Prague for maintaining patients in its epileptosurgical programme. The main reasons for replacing the original information system was the fact that it didn't comply with the current requirements of the doctors, contained bugs and its design wasn't optimal. Because of the uniqueness of stored data and because of the special requirements of the system itself, there was no free software available that would be suitable and thus it was needed to create custom information system.
+The GENEPI IS should replace the original information system that was used in the Faculty Hospital Motol in Prague for maintaining patients in its epileptosurgical programme. The main reasons for replacing the original information system was the fact that it didn't comply with the current requirements of the doctors, contained bugs and its design wasn't optimal. Because of the uniqueness of stored data and because of the special requirements of the system itself, there was no free software available that would be suitable and thus it was needed to create custom information system.
 
 I chose to participate in this project, although I knew it would not be easy. The main reasons that led to selection of participation in the development of the GENEPI IS were the facts that it is a software that will be deployed in the production environment to be used by real users and can help to improve the state of health of real people. 
 
@@ -77,7 +77,7 @@ In the following chapters the reader will become familiar with the GENEPI IS, th
 
 \chapter{Current status}
 
-That the reader can fully understand the functioning of the reporting module, first of all it is needed to introduce the information system that it extends. The GENEPI information system was being created within the subjects BI-SP1 and BI-SP2 at the Czech Technical University, Faculty of Information Technologies in the school year 2012/2013 as a student project. You will find these projects with full documentation on enclosed CD.
+That the reader can fully understand the functioning of the reporting module, first of all it is needed to introduce the information system that it extends. The GENEPI information system was being created within the subjects BI-SP1 and BI-SP2 at the Czech Technical University, Faculty of Information Technologies in the school year 2012/2013 as a student project. You will find these projects on enclosed CD.
 
 GENEPI IS is being developed in the java programming language, using frameworks\footnote{An abstraction in which software providing generic functionality can be changed by code additionally added by a programmer}  Spring 4.0.2 and Hibernate 4.3.4. The front end part is realized via JSP, using HTLM5, JavaScript and CSS. Libraries that were used to ease the programming of the front end were Twitter Bootstrap 3.3.1 and jQuery 2.1.0.  MySQL 5.5 was chosen as a database and  Apache Tomcat 7 as an application server. All of the used software and libraries are distributed under some kind of free license. GENEPI IS is a bilingual software due to the expected deployment in the Miami Children's hospital in Florida, the United States of America. Languages that are currently supported, are Czech and English, nevertheless thanks to the suitably implemented localization it is easy to extend the application to add any other language. During the whole period of the programming of the system, the team consulted the approach often  and regularly with the contracting authority, to fully meet the needs of the doctors.
 
@@ -200,7 +200,7 @@ Also among the important requirements included was that it has to be able to mod
 
 Of course there has to also be data security to prevent access to sensitive patient data to users without proper permission.
 
-The main goals consequently are:
+The main goals consequently were:
 \begin{itemize}
   	\item Implement export to pdf, docx, xls, csv and txt format
   	\item Implement export configuration
@@ -273,12 +273,12 @@ A Hibernate annotation, @Column, is also mandatory as it describes the mapping o
 I would like to point out the generic GenericDAO and GenericDAOImpl classes that have been implemented.
 These are abstract classes that were implemented to ease the process of programming of the other DAO and DAOImpl classes.
 
-In the GenericDAOImpl class there are implemented the most used methods that may be used by any service such as save, delete, getCount, getCountOfUnhidden, findByID and many other. The GenericDAO class is AN interface of the GenericDAOImpl class as is usual in the rest of the project. 
+In the GenericDAOImpl class there are implemented the most used methods that may be used by any service such as save, delete, getCount, getCountOfUnhidden, findByID and many other. The GenericDAO class is an interface of the GenericDAOImpl class as is usual in the rest of the project. 
 
 The other DAO and DAOImpl methods extend these generic classes so that it wasn't subsequently needed to implement these basic functions to every single class and the programmer had to programme only those functions that were unique for that particular class.
 
 \subsection{Design of the front end part}
-As well as the back end part, the front end had to follow the style and design of the rest of the system. If I haden't done so, the work with the reporting module could be confusing for users. On the basis of these facts, it was needed to implementa a front end based on the same technologies as the rest of the GENEPI IS. Thanks to this approach the User Experience\footnote{User's behaviors, attitudes, and emotions about using a system or service} from work with this module is positive and the user accepts the reporting module as an integral part of the IS.
+As well as the back end part, the front end had to follow the style and design of the rest of the system. If I haden't done so, the work with the reporting module could be confusing for users. On the basis of these facts, it was needed to implement a front end based on the same technologies as the rest of the GENEPI IS. Thanks to this approach the User Experience\footnote{User's behaviors, attitudes, and emotions about using a system or service} from work with this module is positive and the user accepts the reporting module as an integral part of the IS.
 
 \chapter{Realisation}
 In this chapter, I would like to describe how the export, its customization and security was implemented. I would also like to describe the inner logic used while performing these actions. In the end, it is also needed to familiarize the reader with the form of the front end and describe its sections individually.
@@ -286,8 +286,8 @@ In this chapter, I would like to describe how the export, its customization and 
 The standard approach when performing an export is as follow:
 \begin{enumerate}
 \item{ The user chooses in the export view the properties that he wants to include in the exported file, the format, anonymization option and hits the export button }
-\item{ The PatientExportPOST method in PatientController class is called up and according to the given parameters it calls up the method to export the data to the right format. It also checks if the data should be anonymized and if the user isn't authorized to see sensitive data then it sets the anonymize flag to true automatically. All given parameters with all if this information are passed to the called upon export function in the Bussines tier.}
-\item{ In this step we've moved from Presentation tier to Business tier, where the methods from Data layer are called to get pateint data. Then one of the methods for export to a particular format is called. This is the part where the data is being written to the file itself. The program iterates through all the patients that the user wanted to export and gradually prints out their data.}
+\item{ The PatientExportPOST method in the PatientController class is called up and according to the given parameters it calls up the method to export the data to the right format. It also checks if the data should be anonymized and if the user isn't authorized to see sensitive data then it sets the anonymize flag to true automatically. All given parameters with all of this information are passed to the called upon export function in the Bussines tier.}
+\item{ In this step we've moved from the Presentation tier to the Business tier, where the methods from the Data layer are called to get pateint data. Then one of the methods for export to a particular format is called. This is the part where the data is being written to the file itself. The program iterates through all the patients that the user wanted to export and gradually prints out their data.}
 First the patient's header is printed out. This header contains information about the patient such as his age, gender, age at the onset of epilepsy and other important data. It may also contain sensitive data such as his name, address or other contact information.
 \item{ In the last step the user is redirected to an URL of the newly created file with exported data to download. This file persists on the server and can be repeatedly downloaded. The time that this file is accessable depends on the setting of the server CRON\footnote{A time-based job scheduler in Unix-like operating systems.}, as this should regulary delete old files in the directory dedicated for export files.}
 
@@ -310,7 +310,6 @@ On the front end there was implemented a customized treeview, where every item h
 Here I attach a simple example of the treeview I was writing about:
 
 
-\begin{figure}[ht]
 	\dirtree{%
 		.1 Anamnesis\DTcomment{anamnesis card}.
 		.2 Anamnesis property.
@@ -331,7 +330,6 @@ Here I attach a simple example of the treeview I was writing about:
 		.1 ....
 		.1 Outcome\DTcomment{outcome card}.
 	}
-\end{figure}
 
 After confirming the export form, the state of the treeview is saved to an instance of an entity called ExportParams. This entity has a boolean property for every single value from the treeview in the export form. Thanks to this I am able to determine which properties the user wanted to export and which he didn't. It gives me another advantage - I can save the current setting of the treeview for a later usage, but I will write about this feature later.
 
@@ -352,7 +350,7 @@ There are of course java libraries that provide you some way to export data to p
 Before I started to implement the export to csv format, I was also thinking whether I should implement the whole logic of export to csv, but decided to proceed similarly as in the case of implementation of the export to pdf. Nevertheless, in this case I don't use a file with data exported to docx, but a file created by export to xls, as this format can be easily transformed to csv and vice versa. During the export to csv I create at first an xls file with exported data and then walk through this file and print out the values to the file via the classes from java.io.* package. These are the same classes that have been used in the export to txt. Based on the requirements of the contracting authority commas, as a standard delimiter in csv format, has been replaced with semicolons. The main reason of this change was the fact that every card that a patient may have contains a comment field, which is  text and which may contain commas. As the semicolon is a much less used character in sentences, it was decided to use it as a delimiter. Otherwise the report could look confusing for the user.
 \section{Security and anonymization}
 In GENEPI IS there are 5 main levels of access, according to the visibility of the patient's data.
-\begin{figure}[ht]
+
 	\begin{enumerate}
 	\item{Users}
 	
@@ -373,7 +371,6 @@ In GENEPI IS there are 5 main levels of access, according to the visibility of t
 	Users with the role of Superdoctor have the same priviledges as users with the role of Doctor. Moreover they have the right to verify unverified patients.
 
 	\end{enumerate}
-\end{figure}
 
 Because of this fact it was needed to implement some way to anonymize the exported data. To the reporting module I implemented two types of anonymization - optional and manadatory.
 
@@ -392,7 +389,7 @@ The other type is the user's private configurations. Every user with a sufficien
 Deletion of configurations is possible as well. Private configurations can be deleted by a user who can see them in his list of private configurations and not by anybody else. 
 
 On the other hand generic configurations are visible to all users in the system, therefore it is necessary to determine if a user who wants to delete some generic configuration has even the right to perform this action. To delete a generic configuration the user has to own a Superdoctor role. Then he's allowed to delete any generic configuration created by any other user. If the user doesn't have a Superdoctor role, then the delete button for generic configurations is not even displayed to this user in the export view.
-On the following pictures you can see the activity diagram of saving and then deleting of a configuration from the point of view of the user.
+In the following pictures you can see the activity diagram of saving and then deleting of a configuration from the point of view of the user.
 
 \begin{figure}
 	\centering
@@ -432,7 +429,7 @@ In the next picture there is displayed a section for export itself. First a list
 \end{figure}
 
 
-In the last picture you can see the interface for saving custom configurations. There is a textfield for naming the configuration and if the user has a Superdoctor role, then he may check the checkbox to make the configuration generic.
+In the last picture you can see the interface for saving custom configurations. There is a textfield for naming the configuration and if the user has a Superdoctor role, then he may check the checkbox to make it generic.
 
 \begin{figure}
 	\centering
@@ -444,9 +441,9 @@ In the last picture you can see the interface for saving custom configurations. 
 
 \chapter{Testing and Examples}
 
-Testing of the reporting module as well as the GENEPI IS itself was performed during the development by the developers themselves and by a member of the team who held the position of tester. After key  functionalities were implemented, Ing. Ježdík Ph.D obtained access to the system and tested it with normal use cases. He of course had many requests for changes that would improve the application or found bugs that requiered fixing. Currently the GENEPI IS with reporting module should be deployed on produciton servers in the Faculty Hospital Motol and will fully replace the existing application. As in most of the cases from the commercial sector, it is expected, that users will also make some requests for changes. But those are expected to be minor change requests, mostly on the front end and should be implemented within a few MD.
+Testing of the reporting module as well as the GENEPI IS itself was performed during the development by the developers themselves and by a member of the team who held the position of a tester. After key  functionalities were implemented, Ing. Ježdík Ph.D obtained access to the system and tested it with normal use cases. He of course had many requests for changes that would improve the application or found bugs that requiered fixing. Currently the GENEPI IS with reporting module should be deployed on produciton servers in the Faculty Hospital Motol and will fully replace the existing application. As in most of the cases from the commercial sector, it is expected, that users will also make some requests for changes. But those are expected to be minor change requests, mostly on the front end and should be implemented within a few MD.
 
-On the following screenshots the reader can see a few examples of how the export files created by the reporting module look. I also enclose a simple example of an analysis made on the basis of data from GENEPI IS, that were exported into xls. All these examples spring from real data, currently saved in the IS, but they were anonymized of course. You may find these files enclosed on the CD as well.
+In the following screenshots the reader can see a few examples of how the export files created by the reporting module look. I also enclose a simple example of an analysis made on the basis of data from GENEPI IS, that were exported into xls. All these examples spring from real data, currently saved in the IS, but they were anonymized of course. You may find these files enclosed on the CD as well.
 
 \begin{figure}
 	\centering
@@ -531,49 +528,46 @@ I'm proud that result of my bachelor's thesis will be deployed in the biggest ho
 \end{description}
 
 \chapter{Contents of enclosed CD}
-To my bachelors thesis I enclose a CD which contains all the important data, needed to start your own Apache Tomcat AS, MySQL database and depoloy GENEPI IS. It also contains source codes of GENEPI IS and the libraries that it uses. In the Database directory is also an enclosed model for MySQL Workbench, where the reader may see the structure of the database. In the same folder you can also find migration scripts. These are important when migrating from the information system that was previously used in the Faculty Hospital Motol to GENEPI IS. Migration scripts allow you to copy data from the previously used database to the databse that is being used by the GENEPI IS. Thanks to this, the reader should be able to administrate or even modify GENEPI IS without any larger problems. If the reader would like to use the enclosed Apache Tomcat AS and/or MySQL database he has to agree to follow the licence agreements that are enclosed in the same directories as the software being distributed under them.
+To my bachelor's thesis I enclose a CD which contains all the important data, needed to depoloy GENEPI IS. It also contains source codes of GENEPI IS and the libraries that it uses. In the installPackage directory is also an enclosed a model for MySQL Workbench, where the reader may see the structure of the database. In the same folder you can also find a directory with migration scripts. These are important when migrating from the information system that was previously used in the Faculty Hospital Motol to GENEPI IS. Migration scripts allow you to copy data from the previously used database to the databse that is being used by the GENEPI IS. Thanks to this, the reader should be able to administrate or even modify GENEPI IS without any larger problems.
 
 The next important directory is the directory with samples of exported data. This folder contains 14 files with all possible formats of exported data - pdf, docx, xls, csv, txt - all of these formates in both anonymized and unanonymized variants (sensitive data were changed) and both printed as a plain text and formated to a table for pdf and docx as well.
 
-The reader will also find a useful directory that contains deployment packages of the results of the previously mentioned projects from the subjects BI-SP1 and BI-SP2. The documentation to these projects is included in that directory.
+The reader will also find a useful directory that contains deployment packages of the results of the previously mentioned projects from the subjects BI-SP1 and BI-SP2. The documentation to these doesn't differ from the documentation for the GENEPI IS.
 
-I would also recommend you become familiar with the content of the directory Documentation, where you will find user and admin documentation for GENEPI IS.
+I would also recommend you become familiar with the content of the directory documentation, where you will find user and admin documentation for GENEPI IS.
 
-Additional content of the enclosed CD is the text directory, that contains this theis in pdf and ps format and readme.txt file which describes in great deatail the content of the CD.
+Additional content of the enclosed CD is the text directory, that contains this theis in a pdf format.
 
 \begin{figure}
-	\dirtree{%
+	\dirtree{%		
+.1 documentation\DTcomment{the directory of the GENEPI IS documentation}.		
+		.1 installPackage\DTcomment{the directory of install package of the current version}.
+		.1 previousVersions\DTcomment{the direcotry of the results of BI-SP1 and BI-SP2}.
+		.1 sampleData\DTcomment{the directory that contains samples of exported data}.
+		.1 source\DTcomment{the directory of source codes of the GENEPI IS and this thesis}.
+		.2 impl\DTcomment{the directory of source codes of the GENEPI IS}.
+		.3 images \DTcomment{the directory of images used in the thesis}.
+		.3 thesis.ps\DTcomment{the thesis text in PS format}.		
+		.3 Backend\DTcomment{the directory of a maven project}.
+		.4 src\DTcomment{the directory of GENEPI IS source codes}.
+		.5 main.
+		.6 java.
+		.7 cz.
+		.8 cvut.
+		.9 fit.
+		.10 GENEPI\DTcomment{the directory of java classes}.
+		.6 resources\DTcomment{the directory configuration files}.
+		.6 webapp.
+		.7 resources\DTcomment{the directory of librarires for front end}.
+		.8 WEB-IF.
+		.9 spring\DTcomment{the directory for spring context file}.
+		.9 tags\DTcomment{the directory of templates for jsp pages}.
+		.9 views\DTcomment{the directory of jsp pages}.
+		.5 test\DTcomment{the directory of source codes of unit tests }.
+		.2 thesis\DTcomment{the directory of source codes of this thesis}.
+		.1 text\DTcomment{the thesis text directory}.
+		.2 BachelorsThesis.pdf\DTcomment{the thesis text in PDF format}.
 		.1 readme.txt\DTcomment{the file with CD contents description}.
-		.1 Apache Tomcat\DTcomment{the directory that contains Apache Tomcat}.
-		.1 Backend\DTcomment{the directory of a maven project}.
-		.2 src\DTcomment{the directory of GENEPI IS source codes}.
-		.3 main.
-		.4 java.
-		.5 cz.
-		.6 cvut.
-		.7 fit.
-		.8 GENEPI\DTcomment{the directory of source code of an implementation}.
-		.4 resources\DTcomment{the directory configuration files}.
-		.4 webapp.
-		.5 resources\DTcomment{the directory of librarires for front end}.
-		.6 WEB-IF.
-		.7 spring\DTcomment{the directory for spring context file}.
-		.7 tags\DTcomment{the directory of templates for jsp pages}.
-		.7 views\DTcomment{the directory of jsp pages}.
-		.3 test\DTcomment{the directory of source codes of unit tests }.
-		.1 Database\DTcomment{the directory of the MySQL databse and database scripts}.
-		.2 MySQL\DTcomment{the directory that contains MySQL database}.
-		.2 data\DTcomment{the directory of a model of the database and migration scripts}.
-		.1 Documentation\DTcomment{the directory of GENEPI IS documentation}.
-		.1 Previous projects\DTcomment{the direcotry of results of BI-SP1 and BI-SP2}.
-		.2 BI-SP1\DTcomment{the directory of the BI-SP1 project}.
-		.2 BI-SP2\DTcomment{the direcotry of the BI-SP2 project}.
-		.1 Sample Data\DTcomment{the directory that contains samples of exported data}.
-		.1 Text\DTcomment{the thesis text directory}.
-		.2 images \DTcomment{the directory of images used in the thesis}.
-		.2 thesis.pdf\DTcomment{the thesis text in PDF format}.
-		.2 thesis.ps\DTcomment{the thesis text in PS format}.
-		.1 war\DTcomment{the directory with war file}.
 	}
 \end{figure}
 
