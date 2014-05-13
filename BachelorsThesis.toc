@@ -8,7 +8,7 @@
 \contentsline {section}{\numberline {2.1}Functional Requirements}{4}{section.2.1}
 \contentsline {section}{\numberline {2.2}Non-functional Requirements}{4}{section.2.2}
 \contentsline {section}{\numberline {2.3}Used back end technologies}{5}{section.2.3}
-\contentsline {section}{\numberline {2.4}Used front end technologies}{6}{section.2.4}
+\contentsline {section}{\numberline {2.4}Used front end technologies}{7}{section.2.4}
 \contentsline {chapter}{\chapternumberline {3}Goals}{9}{chapter.3}
 \contentsline {chapter}{\chapternumberline {4}Analysis and design}{11}{chapter.4}
 \contentsline {section}{\numberline {4.1}Design of the reporting module}{11}{section.4.1}
@@ -18,18 +18,18 @@
 \contentsline {subsubsection}{\numberline {4.1.1.3}Data layer}{13}{subsubsection.4.1.1.3}
 \contentsline {subsection}{\numberline {4.1.2}Design of the front end part}{14}{subsection.4.1.2}
 \contentsline {chapter}{\chapternumberline {5}Realisation}{15}{chapter.5}
-\contentsline {section}{\numberline {5.1}Customization of the export}{17}{section.5.1}
-\contentsline {section}{\numberline {5.2}Export to the particular formats}{18}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}txt}{18}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}docx}{18}{subsection.5.2.2}
-\contentsline {subsection}{\numberline {5.2.3}xls}{19}{subsection.5.2.3}
-\contentsline {subsection}{\numberline {5.2.4}pdf}{19}{subsection.5.2.4}
-\contentsline {subsection}{\numberline {5.2.5}csv}{19}{subsection.5.2.5}
-\contentsline {section}{\numberline {5.3}Security and anonymization}{20}{section.5.3}
-\contentsline {section}{\numberline {5.4}Custom configurations}{21}{section.5.4}
-\contentsline {section}{\numberline {5.5}Graphical user interface of the reporting module}{22}{section.5.5}
-\contentsline {chapter}{\chapternumberline {6}Testing and Examples}{27}{chapter.6}
-\contentsline {chapter}{Conclusion}{31}{chapter*.5}
-\contentsline {chapter}{Bibliography}{33}{section*.7}
-\contentsline {appendix}{\chapternumberline {A}Acronyms}{35}{appendix.A}
-\contentsline {appendix}{\chapternumberline {B}Contents of enclosed CD}{37}{appendix.B}
+\contentsline {section}{\numberline {5.1}Customization of the export}{18}{section.5.1}
+\contentsline {section}{\numberline {5.2}Export to the particular formats}{19}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}txt}{20}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}docx}{20}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}xls}{20}{subsection.5.2.3}
+\contentsline {subsection}{\numberline {5.2.4}pdf}{20}{subsection.5.2.4}
+\contentsline {subsection}{\numberline {5.2.5}csv}{21}{subsection.5.2.5}
+\contentsline {section}{\numberline {5.3}Security and anonymization}{21}{section.5.3}
+\contentsline {section}{\numberline {5.4}Custom configurations}{22}{section.5.4}
+\contentsline {section}{\numberline {5.5}Graphical user interface of the reporting module}{25}{section.5.5}
+\contentsline {chapter}{\chapternumberline {6}Testing and Examples}{29}{chapter.6}
+\contentsline {chapter}{Conclusion}{33}{chapter*.5}
+\contentsline {chapter}{Bibliography}{35}{section*.7}
+\contentsline {appendix}{\chapternumberline {A}Acronyms}{37}{appendix.A}
+\contentsline {appendix}{\chapternumberline {B}Contents of enclosed CD}{39}{appendix.B}
